@@ -12,22 +12,26 @@ public class ItemObj:SerializedMonoBehaviour, IPointerEnterHandler, IPointerExit
     public Dir dir;
     public ItemModel model;
     public Material outLine;
+    public ItemLevel itemLevel;
     public ItemObj(ItemModel itemModel)
     {
         dir = Dir.Up;
         this.model = itemModel;
+        itemLevel = ItemLevel.None;//todo 物品等级
     }
 
 
     public void OnPointerEnter(PointerEventData eventData)
     {
         image.material = outLine;
-        GamePlayManager.Instance.mouseItem = this;
+        GamePlayManager.Instance.SetMouseItem(this,true);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         image.material = null;
+        GamePlayManager.Instance.SetMouseItem(this, false);
+
     }
     internal List<Vector2Int> GetRound(Vector2Int pos)
     {
@@ -35,7 +39,7 @@ public class ItemObj:SerializedMonoBehaviour, IPointerEnterHandler, IPointerExit
         switch (dir)
         {
             case Dir.Up:
-                foreach (var item in model.round)
+                foreach (var item in model.GetRound())
                 {
                     result.Add(item+pos);
                 }
@@ -51,6 +55,18 @@ public class ItemObj:SerializedMonoBehaviour, IPointerEnterHandler, IPointerExit
         }
         return result;
     }
+
+    internal int GetValue()
+    {
+        switch (itemLevel)
+        {
+            case ItemLevel.None:
+                return model.value;
+            default:
+                break;
+        }
+        return model.value;
+    }
 }
 public enum Dir
 {
@@ -58,4 +74,8 @@ public enum Dir
     Down,
     Left,
     Right,
+}
+public enum ItemLevel
+{
+    None,
 }

@@ -13,11 +13,15 @@ public class ItemModel : SerializedScriptableObject
     /// <summary>
     /// Õ¼¾Ý¿Õ¼ä
     /// </summary>
-    public List<Vector2Int> round;
+    public int roundID;
     /// <summary>
     /// id
     /// </summary>
     public int ID;
+    public List<Vector2Int> GetRound()
+    {
+        return GameManager.Instance.dataList.rounds[roundID];
+    }
     public ItemModel()
     {
         ID = 1001;

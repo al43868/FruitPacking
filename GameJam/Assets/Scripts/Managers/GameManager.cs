@@ -12,6 +12,7 @@ public class GameManager : SerializedSingleTion<GameManager>
     public List<NewBox> boxes;
     public Transform panel;
     public ItemObj currentItem;
+    public DataList dataList;
     protected override void Awake()
     {
         base.Awake();

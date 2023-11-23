@@ -42,6 +42,8 @@ public class GamePlayManager : SerializedSingleTion<GamePlayManager>
             }
         }
     }
+
+
     public bool canSet;
     public Vector2Int mouseGridPos;
     public Box currentBox;
@@ -50,8 +52,23 @@ public class GamePlayManager : SerializedSingleTion<GamePlayManager>
     internal ItemObj mouseItem;
 
     [Button]
-    public async void CreatNewBox()
+    public async void NextBox()
     {
+        //当前盒子
+        if (currentBox != null)
+        {
+            currentBox.End();
+
+            int i = 0;
+            foreach (var item in currentBox.items)
+            {
+                i += item.GetValue();
+            }
+            print(i);//todo
+            _ = currentBox.transform.DOLocalMove(new Vector3(-2000, 0, 0), 2f);
+        }
+
+        //下一个盒子
         Box go = GameObject.Instantiate(boxes[0].box, boxs);
         go.gridsTr.SetActive(false);
         go.transform.localPosition = new Vector3(2000, 0, 0);
@@ -60,6 +77,23 @@ public class GamePlayManager : SerializedSingleTion<GamePlayManager>
         go.Init();
     }
 
+    internal void SetMouseItem(ItemObj itemObj, bool v)
+    {
+        if (mouseItem == null)
+        {
+            if (v)
+            {
+                mouseItem= itemObj;
+            }
+        }
+        else
+        {
+            if(mouseItem == itemObj)
+            {
+                mouseItem = null;
+            }
+        }
+    }
     internal void UpdateMousePos(Vector3 mousePostion)
     {
         mousePos.position = mousePostion;

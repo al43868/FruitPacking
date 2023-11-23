@@ -42,6 +42,10 @@ public class Box : MonoBehaviour
             item.Value.Init();
         }
     }
+    internal void End()
+    {
+        gridsTr.SetActive(false);
+    }
     public void ChoseGrid(List<Vector2Int> rounds)
     {
         foreach (var item in rounds)
@@ -62,7 +66,6 @@ public class Box : MonoBehaviour
             }
         }
     }
-
     internal void Clear()
     {
         foreach (var item in grids)
