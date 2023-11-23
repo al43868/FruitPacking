@@ -18,7 +18,13 @@ public class ItemModel : SerializedScriptableObject
     /// id
     /// </summary>
     public int ID;
+    /// <summary>
+    /// 缩小物品
+    /// </summary>
     public List<ItemModel> lowItems;
+    /// <summary>
+    /// 放大物品
+    /// </summary>
     public List<ItemModel> highItems;
     public float wigh, high;
     public Sprite sprite;

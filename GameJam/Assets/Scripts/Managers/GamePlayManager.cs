@@ -9,8 +9,17 @@ using UnityEngine;
 public class GamePlayManager : SerializedSingleTion<GamePlayManager>
 {
     public List<NewBox> boxes;
+    /// <summary>
+    /// panel中的分层
+    /// </summary>
     public Transform panel, boxs, items;
+    /// <summary>
+    /// 鼠标位置
+    /// </summary>
     public Transform mousePos;
+    /// <summary>
+    /// 当前物品
+    /// </summary>
     [SerializeField]
     private ItemUI currentItem;
     public ItemUI CurrentItem
@@ -43,17 +52,42 @@ public class GamePlayManager : SerializedSingleTion<GamePlayManager>
             }
         }
     }
-
-
+    /// <summary>
+    /// 放下物品
+    /// </summary>
     public bool canSet;
+    /// <summary>
+    /// 鼠标所在格子
+    /// </summary>
     public Vector2Int mouseGridPos;
+    /// <summary>
+    /// 当前盒子
+    /// </summary>
     public Box currentBox;
-    public List<Vector2Int> currentItemRound;
+    /// <summary>
+    /// 放进盒子
+    /// </summary>
     public bool canInBox;
-    internal ItemUI mouseItem;
-    public ClickEff clickEff;
+    /// <summary>
+    /// 鼠标所在物品
+    /// </summary>
+    public ItemUI mouseItem;
+    /// <summary>
+    /// 当前点击效果
+    /// </summary>
+    public ClickEff currentClickEff;
+    /// <summary>
+    /// 鼠标所在可选点击效果
+    /// </summary>
     public ClickEff mouseEff;
+    /// <summary>
+    /// 物品prefab
+    /// </summary>
     public ItemUI itemPrefab;
+    /// <summary>
+    /// 玩法中的资源
+    /// </summary>
+    public GamePlayRes res;
     [Button]
     public async void NextBox()
     {
@@ -108,8 +142,7 @@ public class GamePlayManager : SerializedSingleTion<GamePlayManager>
             if (currentItem == null) return;
             currentBox.Clear();
             mouseGridPos = pos;
-            currentItemRound = currentItem.item.GetRound(pos);
-            currentBox.ChoseGrid(currentItemRound);
+            currentBox.ChoseGrid(currentItem.item.GetRound(pos));
             canInBox = true;
         }
         else
@@ -187,30 +220,30 @@ public class GamePlayManager : SerializedSingleTion<GamePlayManager>
                     }
                     
                 }
-                if (clickEff == ClickEff.None)
+                if (currentClickEff == ClickEff.None)
                 {
                     CurrentItem = mouseItem;
                     mouseItem = null;
                 }
                 else
                 {
-                    GetNewItem(clickEff, mouseItem);
+                    GetNewItem(currentClickEff, mouseItem);
                 }
             }
             else
             {
                 if (mouseEff != ClickEff.None)
                 {
-                    if (mouseEff != clickEff)
+                    if (mouseEff != currentClickEff)
                     {
-                        clickEff = mouseEff;
+                        currentClickEff = mouseEff;
                     }
                 }
                 else
                 {
-                    if (clickEff != ClickEff.None)
+                    if (currentClickEff != ClickEff.None)
                     {
-                        clickEff = ClickEff.None;
+                        currentClickEff = ClickEff.None;
                     }
                 }
             }
@@ -228,9 +261,21 @@ public class GamePlayManager : SerializedSingleTion<GamePlayManager>
             case ClickEff.None:
                 break;
             case ClickEff.Big:
+                if (res.bigEffCount <= 0)
+                {
+                    GameManager.Instance.Log(2004);
+                    return;
+                }
+                res.bigEffCount--;
                 newItem = mouseItem.item.model.highItems[0];
                 break;
             case ClickEff.Small:
+                if (res.smallEffCount <= 0)
+                {
+                    GameManager.Instance.Log(2003);
+                    return;
+                }
+                res.smallEffCount--;
                 newItem = mouseItem.item.model.lowItems[0];
                 break;
             default:
