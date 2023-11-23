@@ -12,8 +12,8 @@ public class GamePlayManager : SerializedSingleTion<GamePlayManager>
     public Transform panel, boxs, items;
     public Transform mousePos;
     [SerializeField]
-    private ItemObj currentItem;
-    public ItemObj CurrentItem
+    private ItemUI currentItem;
+    public ItemUI CurrentItem
     {
         get { return currentItem; }
         set
@@ -37,7 +37,8 @@ public class GamePlayManager : SerializedSingleTion<GamePlayManager>
                     currentItem = value;
                     currentItem.image.raycastTarget = false;
                     currentItem.transform.SetParent(mousePos);
-                    currentItem.transform.localPosition = Vector3.zero;
+                    currentItem.transform.localPosition = new(value.item.model.wigh*50,
+                        value.item.model.high * 50,0);
                 }
             }
         }
@@ -49,8 +50,10 @@ public class GamePlayManager : SerializedSingleTion<GamePlayManager>
     public Box currentBox;
     public List<Vector2Int> currentItemRound;
     public bool canInBox;
-    internal ItemObj mouseItem;
-
+    internal ItemUI mouseItem;
+    public ClickEff clickEff;
+    public ClickEff mouseEff;
+    public ItemUI itemPrefab;
     [Button]
     public async void NextBox()
     {
@@ -62,7 +65,7 @@ public class GamePlayManager : SerializedSingleTion<GamePlayManager>
             int i = 0;
             foreach (var item in currentBox.items)
             {
-                i += item.GetValue();
+                i += item.item.GetValue();
             }
             print(i);//todo
             _ = currentBox.transform.DOLocalMove(new Vector3(-2000, 0, 0), 2f);
@@ -77,7 +80,7 @@ public class GamePlayManager : SerializedSingleTion<GamePlayManager>
         go.Init();
     }
 
-    internal void SetMouseItem(ItemObj itemObj, bool v)
+    internal void SetMouseItem(ItemUI itemObj, bool v)
     {
         if (mouseItem == null)
         {
@@ -105,7 +108,7 @@ public class GamePlayManager : SerializedSingleTion<GamePlayManager>
             if (currentItem == null) return;
             currentBox.Clear();
             mouseGridPos = pos;
-            currentItemRound = currentItem.GetRound(pos);
+            currentItemRound = currentItem.item.GetRound(pos);
             currentBox.ChoseGrid(currentItemRound);
             canInBox = true;
         }
@@ -126,6 +129,24 @@ public class GamePlayManager : SerializedSingleTion<GamePlayManager>
 
         }
     }
+
+    internal void SetMouseClickEff(ClickEff clickEff, bool v)
+    {
+        if (v)
+        {
+            if(mouseEff != clickEff)
+            {
+                mouseEff = clickEff;
+            }
+        }
+        else
+        {
+            if (mouseEff == clickEff)
+            {
+                mouseEff = ClickEff.None;
+            }
+        }
+    }
     internal void LeftClick()
     {
         if (CurrentItem != null)
@@ -139,6 +160,7 @@ public class GamePlayManager : SerializedSingleTion<GamePlayManager>
             }
             else if (canInBox)
             {
+                //·ÅÈëºÐ×Ó
                 if (currentBox.SetItem(mouseGridPos, currentItem))
                 {
                     Vector3 v3  = currentBox.GetItemPos(mouseGridPos,currentItem);
@@ -161,19 +183,71 @@ public class GamePlayManager : SerializedSingleTion<GamePlayManager>
                         currentBox.RemoveItem(mouseItem, mouseGridPos);
                         CurrentItem = mouseItem;
                         mouseItem = null;
+                        return;
                     }
-                    else
-                    {
-                        CurrentItem = mouseItem;
-                        mouseItem = null;
-                    }
+                    
                 }
-                else
+                if (clickEff == ClickEff.None)
                 {
                     CurrentItem = mouseItem;
                     mouseItem = null;
                 }
+                else
+                {
+                    GetNewItem(clickEff, mouseItem);
+                }
+            }
+            else
+            {
+                if (mouseEff != ClickEff.None)
+                {
+                    if (mouseEff != clickEff)
+                    {
+                        clickEff = mouseEff;
+                    }
+                }
+                else
+                {
+                    if (clickEff != ClickEff.None)
+                    {
+                        clickEff = ClickEff.None;
+                    }
+                }
             }
         }
     }
+
+    private void GetNewItem(ClickEff eff, ItemUI mouseItem)
+    {
+        if (eff == ClickEff.None) return;
+        print(1);
+        print(mouseItem);
+        ItemModel newItem=null;
+        switch (eff)
+        {
+            case ClickEff.None:
+                break;
+            case ClickEff.Big:
+                newItem = mouseItem.item.model.highItems[0];
+                break;
+            case ClickEff.Small:
+                newItem = mouseItem.item.model.lowItems[0];
+                break;
+            default:
+                break;
+        }
+        //todo pinzhi
+        Vector3 pos = mouseItem.transform.localPosition;
+        var go= GameObject.Instantiate(itemPrefab, items);
+        go.transform.localPosition = pos;
+        go.Init(new(newItem));
+        GameObject.Destroy(mouseItem.gameObject);
+    }
+}
+public enum ClickEff
+{
+    None,
+    Big,
+    Small,
+
 }

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2724355524983065286}
   - component: {fileID: 248428117741503093}
   - component: {fileID: 9178129293944117066}
-  - component: {fileID: 8968018248890102855}
+  - component: {fileID: 5291423220684846194}
   m_Layer: 5
   m_Name: Item1
   m_TagString: Untagged
@@ -77,7 +77,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &8968018248890102855
+--- !u!114 &5291423220684846194
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -86,7 +86,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8011993501904336153}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 765207725a5aeaf488b8c9517167de3a, type: 3}
+  m_Script: {fileID: 11500000, guid: 58ea3cc61acc30d48bdee5c3d2cd332d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   serializationData:
@@ -97,8 +97,10 @@ MonoBehaviour:
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
-    SerializationNodes: []
-  image: {fileID: 9178129293944117066}
-  dir: 0
-  model: {fileID: 11400000, guid: 5c6ace8516fe6c8428b033d2365c919b, type: 2}
+    SerializationNodes:
+    - Name: item
+      Entry: 6
+      Data: 
   outLine: {fileID: 2100000, guid: a82131860306bcd43a16f67c34ef12ea, type: 2}
+  itemLevel: 0
+  image: {fileID: 9178129293944117066}

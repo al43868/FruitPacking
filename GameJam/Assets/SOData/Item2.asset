@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 876d2ffc74b748f4a86345ea3ca6b02c, type: 3}
-  m_Name: Item1
+  m_Name: Item2
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -22,12 +22,11 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   value: 50
-  roundID: 331
-  ID: 1001
-  lowItems:
-  - {fileID: 11400000, guid: fc931730704f84b4f9b1ec9b5135d3c4, type: 2}
+  roundID: 221
+  ID: 1002
+  lowItems: []
   highItems:
-  - {fileID: 11400000, guid: fc931730704f84b4f9b1ec9b5135d3c4, type: 2}
-  wigh: 3
-  high: 3
-  sprite: {fileID: 1089533928, guid: b94fe35b36ce39c438200951037fc3fd, type: 3}
+  - {fileID: 11400000, guid: 5c6ace8516fe6c8428b033d2365c919b, type: 2}
+  wigh: 2
+  high: 2
+  sprite: {fileID: -22494986, guid: b94fe35b36ce39c438200951037fc3fd, type: 3}

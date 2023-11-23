@@ -18,6 +18,10 @@ public class ItemModel : SerializedScriptableObject
     /// id
     /// </summary>
     public int ID;
+    public List<ItemModel> lowItems;
+    public List<ItemModel> highItems;
+    public float wigh, high;
+    public Sprite sprite;
     public List<Vector2Int> GetRound()
     {
         return GameManager.Instance.dataList.rounds[roundID];

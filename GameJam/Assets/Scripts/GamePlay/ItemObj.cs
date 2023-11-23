@@ -6,32 +6,17 @@ using Sirenix.OdinInspector;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class ItemObj:SerializedMonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class ItemObj
 {
-    public Image image;
     public Dir dir;
     public ItemModel model;
-    public Material outLine;
     public ItemLevel itemLevel;
+   
     public ItemObj(ItemModel itemModel)
     {
         dir = Dir.Up;
         this.model = itemModel;
         itemLevel = ItemLevel.None;//todo 物品等级
-    }
-
-
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        image.material = outLine;
-        GamePlayManager.Instance.SetMouseItem(this,true);
-    }
-
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        image.material = null;
-        GamePlayManager.Instance.SetMouseItem(this, false);
-
     }
     internal List<Vector2Int> GetRound(Vector2Int pos)
     {

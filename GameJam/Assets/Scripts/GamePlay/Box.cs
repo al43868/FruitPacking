@@ -12,7 +12,7 @@ public class Box : MonoBehaviour
     public SerializableDictionary<Vector2Int, Grid> grids;
     public GameObject gridsTr;
     public int wigh, high;
-    public List<ItemObj> items;
+    public List<ItemUI> items;
     [Button]
     public void AddGrids(List<Grid> mouseGrid)
     {
@@ -74,9 +74,9 @@ public class Box : MonoBehaviour
         }
     }
 
-    internal bool SetItem(Vector2Int mouseGridPos, ItemObj currentItem)
+    internal bool SetItem(Vector2Int mouseGridPos, ItemUI currentItem)
     {
-        foreach (var item in currentItem.GetRound(mouseGridPos))
+        foreach (var item in currentItem.item.GetRound(mouseGridPos))
         {
             if (!grids.ContainsKey(item))
             {
@@ -89,27 +89,30 @@ public class Box : MonoBehaviour
                 return false;
             }
         }
-        foreach (var item in currentItem.GetRound(mouseGridPos))
+        foreach (var item in currentItem.item.GetRound(mouseGridPos))
         {
             grids[item].isSet = true;
         }
         return true;
     }
 
-    internal Vector3 GetItemPos(Vector2Int pos,ItemObj currentItem)
+    internal Vector3 GetItemPos(Vector2Int pos, ItemUI currentItem)
     {
-        Vector3 gridPos = grids[pos].transform.position;
-        return gridPos;
+        return grids[pos].transform.position + new Vector3((currentItem.item.model.wigh-1) * 50,
+                        (currentItem.item.model.high-1) * 50, 0);
     }
-
-    internal void RemoveItem(ItemObj mouseItem,Vector2Int pos)
+        internal void RemoveItem(ItemUI mouseItem,Vector2Int pos)
     {
-        foreach (var item in mouseItem.GetRound(pos))
+        foreach (var item in mouseItem.item.GetRound(pos))
         {
             if (grids.ContainsKey(item))
             {
                 grids[item].isSet = false;
             }
+        }
+        if (items.Contains(mouseItem))
+        {
+            items.Remove(mouseItem);
         }
     }
 }
