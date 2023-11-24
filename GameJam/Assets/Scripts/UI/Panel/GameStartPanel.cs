@@ -20,7 +20,7 @@ public class GameStartPanel : BasePanel
     public override void OnStart()
     {
         base.OnStart();
-        UIHelper.GetComponentInChild<Button>(panelObj, "Saves").onClick.AddListener(() =>
+        UIHelper.GetComponentInChild<Button>(panelObj, "QuickLoad").onClick.AddListener(() =>
         {
             AudioManager.Instance.PlayMusic(Music.Button1);
             OpenSavePanel();
@@ -77,6 +77,6 @@ public class GameStartPanel : BasePanel
     {
         //GameRoot.Instance.ShowChoseSavePanel();
         //todo ÕæÕýui
-
+        GameManager.Instance.QuickFight();
     }
 }

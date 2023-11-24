@@ -39,7 +39,7 @@ public class GameSaver : SerializedSingleTion<GameSaver>
     {
         base.Awake();
         //Load(); todo
-        _=InitLocalization();
+       _=InitLocalization();
     }
 //    /// <summary>
 //    /// ∂¡»°±æµÿ¥Êµµ

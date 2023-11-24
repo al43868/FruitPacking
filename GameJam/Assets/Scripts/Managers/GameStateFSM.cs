@@ -97,49 +97,29 @@ public class GameStateFSM : IFsm
         //-1:未开始
         AddState(-1, null, null);
         ////1：养成
-        AddState(1, null, null);
+        AddState(1,
+            (x) =>
+            {
+                GameRoot.Instance.Clear();
+                GameRoot.Instance.ShowDevelopMainPanel();
+                AudioManager.Instance.PlayBG();
+            },
+        (x) =>
+            {
+                
+            });
+        //2：玩法
+        AddState(2,
+            (x) =>
+            {
+                GameRoot.Instance.Clear();
+                GameRoot.Instance.ShowGamePlayPanel();
+                GamePlayManager.Instance.Init();
+            },
+            (x) =>
+            {
 
-        //AddState(1,
-        //    (x) =>
-        //    {
-        //        MapManager.Instance.CleanTiles(true, true, true, true);
-        //        InputListener.Instance.StartDevelop();
-        //        GameRoot.Instance.Clear();
-        //        GameRoot.Instance.ShowDevelopMainPanel();
-        //        AudioManager.Instance.PlayBG();
-        //    },
-        //(x) =>
-        //    {
-        //        InputListener.Instance.EndDevelop();
-        //    });
-        ////2：战斗
-        //AddState(2,
-        //    (x) =>
-        //    {
-        //        FightManager.Instance.Init();
-        //        InputListener.Instance.StartFight();
-        //        GameRoot.Instance.Clear();
-        //        GameRoot.Instance.ShowFightMainPanel();
-        //    },
-        //    (x) =>
-        //    {
-        //        InputListener.Instance.EndFight();
-        //    });
-        ////建造中
-        //AddState(3,
-        //    (x) =>
-        //{
-        //    GameRoot.Instance.Clear();
-        //    GameRoot.Instance.ShowInBuildPanel();
-        //    MapManager.Instance.ShowCanBuildRound();
-        //    InputListener.Instance.StartBuild();
-        //    AudioManager.Instance.PlayMusic(Music.BG2, true);
-        //},
-        //    (x) =>
-        //     {
-        //         MapManager.Instance.CleanTiles();
-        //         GameRoot.Instance.Pop();
-        //     });
+            });
     }
     public GameStateFSM(int prepareState = -1)
     {

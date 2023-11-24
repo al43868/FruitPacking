@@ -16,7 +16,7 @@ public class ItemObj
     {
         dir = Dir.Up;
         this.model = itemModel;
-        itemLevel = ItemLevel.None;//todo 物品等级
+        itemLevel = ItemLevel.None;//todo need 物品等级
     }
     internal List<Vector2Int> GetRound(Vector2Int pos)
     {

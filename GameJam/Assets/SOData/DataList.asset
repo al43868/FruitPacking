@@ -241,3 +241,7 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
+  boxs:
+  - {fileID: 8495164460822137255, guid: 45ab83dd33cd3e34c8db92fd8cebc0c7, type: 3}
+  items:
+  - {fileID: 11400000, guid: 5c6ace8516fe6c8428b033d2365c919b, type: 2}

@@ -40,4 +40,5 @@ public class InputManager : SerializedSingleTion<InputManager>
         mousePostion = obj.ReadValue<Vector2>();
         GamePlayManager.Instance.UpdateMousePos(mousePostion);
     }
+
 }

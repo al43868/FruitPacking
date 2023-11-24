@@ -14,7 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_TableCollectionName: New Table
   m_TableCollectionNameGuidString: b332b188ab1e81f428bea5e8d0b65511
-  m_Entries: []
+  m_Entries:
+  - m_Id: 39621128560640
+    m_Key: GameName
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39898363666432
+    m_Key: GameStart
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

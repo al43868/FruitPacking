@@ -8,15 +8,21 @@ using UnityEngine;
 
 public class GamePlayManager : SerializedSingleTion<GamePlayManager>
 {
+    /// <summary>
+    /// 所有箱子
+    /// </summary>
     public List<NewBox> boxes;
+
+    //所有panel中的元素
     /// <summary>
     /// panel中的分层
     /// </summary>
-    public Transform panel, boxs, items;
+    public Transform boxs, items;
     /// <summary>
     /// 鼠标位置
     /// </summary>
     public Transform mousePos;
+
     /// <summary>
     /// 当前物品
     /// </summary>
@@ -44,10 +50,16 @@ public class GamePlayManager : SerializedSingleTion<GamePlayManager>
                 if (currentItem == null)
                 {
                     currentItem = value;
-                    currentItem.image.raycastTarget = false;
-                    currentItem.transform.SetParent(mousePos);
-                    currentItem.transform.localPosition = new(value.item.model.wigh*50,
-                        value.item.model.high * 50,0);
+                    currentItem.SetParent(mousePos);
+
+                }
+                else
+                {
+                    currentItem.image.raycastTarget = true;
+                    currentItem = null;
+
+                    currentItem = value;
+                    currentItem.SetParent(mousePos);
                 }
             }
         }
@@ -87,31 +99,54 @@ public class GamePlayManager : SerializedSingleTion<GamePlayManager>
     /// <summary>
     /// 玩法中的资源
     /// </summary>
-    public GamePlayRes res;
+    private GamePlayRes res;
+    public void Init()
+    {
+        res = new();
+
+    }
+    public GamePlayRes GetRes()
+    {
+        return res;
+    }
     [Button]
     public async void NextBox()
     {
-        //当前盒子
-        if (currentBox != null)
+        if((res.NewBoxes.Count - 1)<=res.boxIndex)
         {
-            currentBox.End();
-
-            int i = 0;
-            foreach (var item in currentBox.items)
-            {
-                i += item.item.GetValue();
-            }
-            print(i);//todo
-            _ = currentBox.transform.DOLocalMove(new Vector3(-2000, 0, 0), 2f);
+            EndDay();
         }
+        else
+        {
+            //当前盒子
+            if (currentBox != null)
+            {
+                currentBox.End();
 
-        //下一个盒子
-        Box go = GameObject.Instantiate(boxes[0].box, boxs);
-        go.gridsTr.SetActive(false);
-        go.transform.localPosition = new Vector3(2000, 0, 0);
-        await go.transform.DOLocalMove(Vector3.zero, 2f);
-        currentBox = go;
-        go.Init();
+                int i = 0;
+                foreach (var item in currentBox.items)
+                {
+                    i += item.item.GetValue();
+                }
+                GameSaver.Instance.GetData().coin += i;
+                //todo 
+                _ = currentBox.transform.DOLocalMove(new Vector3(-2000, 0, 0), 2f);
+            }
+
+            //下一个盒子
+            Box go = GameObject.Instantiate(boxes[0].box, boxs);
+            go.gridsTr.SetActive(false);
+            go.transform.localPosition = new Vector3(2000, 0, 0);
+            await go.transform.DOLocalMove(Vector3.zero, 2f);
+            currentBox = go;
+            go.Init();
+            res.boxIndex++;
+        }
+    }
+
+    private void EndDay()
+    {
+        GameManager.Instance.LoadScene(2);
     }
 
     internal void SetMouseItem(ItemUI itemObj, bool v)
@@ -120,12 +155,12 @@ public class GamePlayManager : SerializedSingleTion<GamePlayManager>
         {
             if (v)
             {
-                mouseItem= itemObj;
+                mouseItem = itemObj;
             }
         }
         else
         {
-            if(mouseItem == itemObj)
+            if (mouseItem == itemObj)
             {
                 mouseItem = null;
             }
@@ -150,7 +185,7 @@ public class GamePlayManager : SerializedSingleTion<GamePlayManager>
             if (mouseGridPos == pos)
             {
                 currentBox.Clear();
-                canInBox=false;
+                canInBox = false;
             }
         }
 
@@ -167,7 +202,7 @@ public class GamePlayManager : SerializedSingleTion<GamePlayManager>
     {
         if (v)
         {
-            if(mouseEff != clickEff)
+            if (mouseEff != clickEff)
             {
                 mouseEff = clickEff;
             }
@@ -196,7 +231,7 @@ public class GamePlayManager : SerializedSingleTion<GamePlayManager>
                 //放入盒子
                 if (currentBox.SetItem(mouseGridPos, currentItem))
                 {
-                    Vector3 v3  = currentBox.GetItemPos(mouseGridPos,currentItem);
+                    Vector3 v3 = currentBox.GetItemPos(mouseGridPos, currentItem);
                     CurrentItem.transform.SetParent(currentBox.transform, false);
                     CurrentItem.transform.position = v3;
                     currentBox.items.Add(CurrentItem);
@@ -218,7 +253,7 @@ public class GamePlayManager : SerializedSingleTion<GamePlayManager>
                         mouseItem = null;
                         return;
                     }
-                    
+
                 }
                 if (currentClickEff == ClickEff.None)
                 {
@@ -227,7 +262,7 @@ public class GamePlayManager : SerializedSingleTion<GamePlayManager>
                 }
                 else
                 {
-                    GetNewItem(currentClickEff, mouseItem);
+                    GetEffNewItem(currentClickEff, mouseItem);
                 }
             }
             else
@@ -250,12 +285,10 @@ public class GamePlayManager : SerializedSingleTion<GamePlayManager>
         }
     }
 
-    private void GetNewItem(ClickEff eff, ItemUI mouseItem)
+    private void GetEffNewItem(ClickEff eff, ItemUI mouseItem)
     {
         if (eff == ClickEff.None) return;
-        print(1);
-        print(mouseItem);
-        ItemModel newItem=null;
+        ItemModel newItem = null;
         switch (eff)
         {
             case ClickEff.None:
@@ -283,16 +316,19 @@ public class GamePlayManager : SerializedSingleTion<GamePlayManager>
         }
         //todo pinzhi
         Vector3 pos = mouseItem.transform.localPosition;
-        var go= GameObject.Instantiate(itemPrefab, items);
-        go.transform.localPosition = pos;
-        go.Init(new(newItem));
+        CreatNewItem(newItem, pos);
         GameObject.Destroy(mouseItem.gameObject);
+    }
+    public void CreatNewItem(ItemModel item, Vector3 pos)
+    {
+        var go = GameObject.Instantiate(itemPrefab, items);
+        go.transform.localPosition = pos;
+        go.Init(new(item));
     }
 }
 public enum ClickEff
 {
     None,
     Big,
-    Small,
-
+    Small
 }

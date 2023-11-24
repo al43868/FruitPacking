@@ -70,6 +70,7 @@ public class GameManager : SerializedSingleTion<GameManager>
 
         if (sceneIndex == 0)
         {
+            //todo need
             SceneManager.LoadScene(0);
             if (InputManager.Instance != null)
             {
@@ -86,8 +87,15 @@ public class GameManager : SerializedSingleTion<GameManager>
                 InputManager.Instance.gamePlay.Enable();
             }
             await SceneManager.LoadSceneAsync(1);
-            //MapManager.Instance.Init(GameSaver.Instance.GetData().mapData);
-            //DevelopManager.Instance.Init();
+            ChangeState(2);
+        }
+        else if (sceneIndex == 2)
+        {
+            if (InputManager.Instance != null)
+            {
+                InputManager.Instance.gamePlay.Disable();
+            }
+            await SceneManager.LoadSceneAsync(2);
             ChangeState(1);
         }
     }
@@ -208,7 +216,7 @@ public class GameManager : SerializedSingleTion<GameManager>
         //GameSaver.Instance.currentSaveGroup = (GameSaver.Instance.save.allSave.Count - 1);
         //GameSaver.Instance.SetData(new(RandomManager.Instance.dataList.maps[0], new()));
         GameSaver.Instance.CreatNewData();
-        LoadScene(1);
+        LoadScene(2);
     }
 
     // public int i;

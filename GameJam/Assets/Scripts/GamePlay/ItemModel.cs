@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
+using System;
 
 [CreateAssetMenu(fileName = "ItemModel", menuName = "SO/ItemModel")]
+[Serializable]
 public class ItemModel : SerializedScriptableObject
 {
     /// <summary>

@@ -22,12 +22,16 @@ public class GameData
     /// 放大光线等级
     /// </summary>
     public int bigEffLevel;
-
+    /// <summary>
+    /// 金钱
+    /// </summary>
+    public int coin;
     public GameData()
     {
         homeLevel= 0;
         startItemLevel= 0;
         smallEffLevel= 0;
         bigEffLevel= 0;
+        coin= 0;
     }
 }

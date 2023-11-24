@@ -39,6 +39,21 @@ public class GameRoot : SerializedSingleTion<GameRoot>
         CutScenePanel cutScenePanel = new();
         uiManager.Push(cutScenePanel);
     }
+    public void ShowGameStartPanel()
+    {
+        GameStartPanel gameStartPanel = new ();
+        uiManager.Push(gameStartPanel);
+    }
+    public void ShowDevelopMainPanel()
+    {
+        DevelopMainPanel developMainPanel = new();
+        uiManager.Push(developMainPanel);
+    }
+    public void ShowGamePlayPanel()
+    {
+        GamePlayPanel gamePlayPanel = new();
+        uiManager.Push(gamePlayPanel);
+    }
     #endregion
     #region ¹¦ÄÜÐÔ
 
@@ -85,16 +100,10 @@ public class GameRoot : SerializedSingleTion<GameRoot>
             print(item.Key+":"+ item.Value);
         }
     }
-
-    //internal void NewLog(int count)
-    //{
-    //   if(FightMainPanel!=null)
-    //        FightMainPanel.UpdateLog(count);
-    //}
-
     internal void Clear()
     {
         uiManager.Clear();
     }
+
     #endregion
 }

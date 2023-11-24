@@ -24,10 +24,17 @@ public class ItemUI : SerializedMonoBehaviour, IPointerEnterHandler, IPointerExi
         GamePlayManager.Instance.SetMouseItem(this, false);
     }
 
-    internal void Init(ItemObj p)
+    internal void Init(ItemObj p,ItemLevel level=ItemLevel.None)
     {
         item = p;
         this.GetComponent<RectTransform>().sizeDelta=new(p.model.wigh*100,p.model.high*100);
         image.sprite=p.model.sprite;
+    }
+
+    internal void SetParent(Transform mousePos)
+    {
+        image.raycastTarget = false;
+        transform.SetParent(mousePos,false);
+        transform.localPosition = new(-item.model.wigh * 45,item.model.high * 45, 0);
     }
 }
