@@ -33,7 +33,13 @@ public class GameRoot : SerializedSingleTion<GameRoot>
         log.SetActive(false);
     }
 
-
+    #region panel
+    public void ShowCutScenePanel()
+    {
+        CutScenePanel cutScenePanel = new();
+        uiManager.Push(cutScenePanel);
+    }
+    #endregion
     #region ¹¦ÄÜÐÔ
 
     internal async void Log(string text)

@@ -12,6 +12,12 @@ public class GamePlayRes
     /// 箱子index
     /// </summary>
     public int index;
+    /// <summary>
+    /// 缩小使用次数
+    /// </summary>
     public int smallEffCount;
+    /// <summary>
+    /// 放大使用次数
+    /// </summary>
     public int bigEffCount;
 }

@@ -25,6 +25,9 @@ public class GameData
 
     public GameData()
     {
-
+        homeLevel= 0;
+        startItemLevel= 0;
+        smallEffLevel= 0;
+        bigEffLevel= 0;
     }
 }

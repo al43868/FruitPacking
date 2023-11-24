@@ -30,7 +30,7 @@ public class ItemModel : SerializedScriptableObject
     public Sprite sprite;
     public List<Vector2Int> GetRound()
     {
-        return GameManager.Instance.dataList.rounds[roundID];
+        return GameManager.Instance.GetDataList().rounds[roundID];
     }
     public ItemModel()
     {
