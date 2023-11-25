@@ -11,7 +11,7 @@ public class RewardModel : SerializedScriptableObject
     public List<int> levels;
     public RewardModel()
     {
-        ID = 0;
+        ID = 3001;
         levels = new ();
     }
 }

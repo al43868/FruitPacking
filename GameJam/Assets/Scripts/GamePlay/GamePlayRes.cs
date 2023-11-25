@@ -7,11 +7,11 @@ public class GamePlayRes
     /// <summary>
     /// 所有箱子
     /// </summary>
-    public List<NewBox> NewBoxes;
+    public List<PartonObj> partons;
     /// <summary>
     /// 箱子index
     /// </summary>
-    public int boxIndex;
+    public int partonIndex;
     /// <summary>
     /// 缩小使用次数
     /// </summary>
@@ -22,17 +22,13 @@ public class GamePlayRes
     public int bigEffCount;
     public GamePlayRes()
     {
-        NewBoxes = new List<NewBox>();
+        partons = new ();
+        //todo
         for (int i = 0; i < 3; i++)
         {
-            NewBoxes.Add(new()
-            {
-                box = GameManager.Instance.GetDataList().boxs[0],
-                rewards = new(),
-                items = new ()
-            });
+            partons.Add(new(GameManager.Instance.GetDataList().partons[0][0]));
         }
-        boxIndex = -1;
+        partonIndex = -1;
         smallEffCount = 2;
         bigEffCount = 2;
     }

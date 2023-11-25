@@ -9,6 +9,6 @@ public class RewardObj
     public RewardObj(RewardModel model)
     {
         this.model = model;
-
+        endLevel = Random.Range(0, model.levels.Count);
     }
 }

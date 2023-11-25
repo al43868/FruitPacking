@@ -227,7 +227,7 @@ public class GameSaver : SerializedSingleTion<GameSaver>
     }
     public void SaveGameSettingByJson()
     {
-        //todo
+        //todo ZHENGSHI
     }
 //    public void SaveGameSettingByJson()
 //    {

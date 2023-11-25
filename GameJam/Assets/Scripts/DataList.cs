@@ -9,4 +9,5 @@ public class DataList : SerializedScriptableObject
     public Dictionary<int, List<Vector2Int>> rounds;
     public List<Box> boxs;
     public List<ItemModel> items;
+    public Dictionary<int, List<PartonModel>> partons;
 }

@@ -76,7 +76,7 @@ public class GameStartPanel : BasePanel
     private void OpenSavePanel()
     {
         //GameRoot.Instance.ShowChoseSavePanel();
-        //todo 真正ui
+        //todo ZHENGSHI 真正ui
         GameManager.Instance.QuickFight();
     }
 }

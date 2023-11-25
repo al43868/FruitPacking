@@ -112,7 +112,7 @@ public class GamePlayManager : SerializedSingleTion<GamePlayManager>
     [Button]
     public async void NextBox()
     {
-        if((res.NewBoxes.Count - 1)<=res.boxIndex)
+        if((res.partons.Count - 1)<=res.partonIndex)
         {
             EndDay();
         }
@@ -129,18 +129,19 @@ public class GamePlayManager : SerializedSingleTion<GamePlayManager>
                     i += item.item.GetValue();
                 }
                 GameSaver.Instance.GetData().coin += i;
-                //todo 
+                //todo 真正获取金钱
                 _ = currentBox.transform.DOLocalMove(new Vector3(-2000, 0, 0), 2f);
             }
 
+            res.partonIndex++;
             //下一个盒子
-            Box go = GameObject.Instantiate(boxes[0].box, boxs);
+            Box go = Instantiate(res.partons[res.partonIndex].model.box, boxs);
+            
             go.gridsTr.SetActive(false);
             go.transform.localPosition = new Vector3(2000, 0, 0);
             await go.transform.DOLocalMove(Vector3.zero, 2f);
             currentBox = go;
             go.Init();
-            res.boxIndex++;
         }
     }
 
