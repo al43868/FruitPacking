@@ -148,7 +148,6 @@ public class GameManager : SerializedSingleTion<GameManager>
             {
                 var locale = LocalizationSettings.Instance.GetSelectedLocale();
                 string text = ""; // 定义一个文本变量
-                print(locale.LocaleName);
                 if (locale.LocaleName == "Chinese (Simplified) (zh)")
                 {
                     text = item.Description; // 获取描述文本

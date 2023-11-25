@@ -24,7 +24,7 @@ public class GameRoot : SerializedSingleTion<GameRoot>
         if (sceneController == null)
             sceneController = new SceneController();
         DontDestroyOnLoad(gameObject);
-        //InitLog();
+        InitLog();
     }
 
     private void InitLog()

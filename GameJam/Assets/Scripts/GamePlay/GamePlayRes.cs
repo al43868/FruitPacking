@@ -23,7 +23,7 @@ public class GamePlayRes
     public GamePlayRes()
     {
         partons = new ();
-        //todo
+        //todo need
         for (int i = 0; i < 3; i++)
         {
             partons.Add(new(GameManager.Instance.GetDataList().partons[0][0]));

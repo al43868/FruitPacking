@@ -23,6 +23,42 @@ MonoBehaviour:
     m_Key: GameStart
     m_Metadata:
       m_Items: []
+  - m_Id: 413725367148544
+    m_Key: CurrentCoin
+    m_Metadata:
+      m_Items: []
+  - m_Id: 425906926198784
+    m_Key: BasePanelTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 428671706537984
+    m_Key: ClickEffPanelTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 448715169669120
+    m_Key: BigEff
+    m_Metadata:
+      m_Items: []
+  - m_Id: 448845453139968
+    m_Key: SmallEff
+    m_Metadata:
+      m_Items: []
+  - m_Id: 448961048158208
+    m_Key: RandomEff
+    m_Metadata:
+      m_Items: []
+  - m_Id: 458229688246272
+    m_Key: StartCount
+    m_Metadata:
+      m_Items: []
+  - m_Id: 458340275265536
+    m_Key: CountUp
+    m_Metadata:
+      m_Items: []
+  - m_Id: 458473863847936
+    m_Key: LevelRandom
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

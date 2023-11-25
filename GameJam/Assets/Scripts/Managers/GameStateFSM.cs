@@ -113,8 +113,9 @@ public class GameStateFSM : IFsm
             (x) =>
             {
                 GameRoot.Instance.Clear();
-                GameRoot.Instance.ShowGamePlayPanel();
                 GamePlayManager.Instance.Init();
+                GameRoot.Instance.ShowGamePlayPanel();
+                InputManager.Instance.UseGamePlay();
             },
             (x) =>
             {

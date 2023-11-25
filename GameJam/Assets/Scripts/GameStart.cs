@@ -8,6 +8,6 @@ public class GameStart : MonoBehaviour
     void Start()
     {
         GameRoot.Instance.ShowGameStartPanel();
-
+        GameRoot.Instance.ShowCutScenePanel();
     }
 }

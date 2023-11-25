@@ -35,11 +35,12 @@ public class GameSaver : SerializedSingleTion<GameSaver>
     /// </summary>
     public DataList dataList;
     #region Init
-    protected override void Awake()
+    protected override async void Awake()
     {
         base.Awake();
         //Load(); todo
-       _=InitLocalization();
+       await InitLocalization();
+        GameRoot.Instance.PopOnePanel();
     }
 //    /// <summary>
 //    /// ∂¡»°±æµÿ¥Êµµ

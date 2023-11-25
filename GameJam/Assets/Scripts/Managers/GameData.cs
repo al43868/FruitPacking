@@ -14,14 +14,7 @@ public class GameData
     /// 初始物品数量
     /// </summary>
     public int startItemLevel;
-    /// <summary>
-    /// 缩小光线等级
-    /// </summary>
-    public int smallEffLevel;
-    /// <summary>
-    /// 放大光线等级
-    /// </summary>
-    public int bigEffLevel;
+    public Dictionary<int, int> levelUPs;
     /// <summary>
     /// 金钱
     /// </summary>
@@ -30,8 +23,11 @@ public class GameData
     {
         homeLevel= 0;
         startItemLevel= 0;
-        smallEffLevel= 0;
-        bigEffLevel= 0;
-        coin= 0;
+        levelUPs = new();
+        for (int i = 0; i < 9; i++)
+        {
+            levelUPs.Add(100 + i, 0);
+        }
+        coin = 0;
     }
 }
