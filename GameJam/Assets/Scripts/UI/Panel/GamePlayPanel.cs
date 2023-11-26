@@ -11,6 +11,7 @@ public class GamePlayPanel : BasePanel
     private static readonly string _path = "GamePlayPanel";
     private static readonly UIType _type = new(_name, _path);
     private TMP_Text boxCountText;
+    private List<MouseEffSet> effs;
     public GamePlayPanel() : base(_type)
     {
 
@@ -31,10 +32,26 @@ public class GamePlayPanel : BasePanel
         boxCountText = nextBox.transform.GetChild(0).GetComponent<TMP_Text>();
         GamePlayManager.Instance.CreatNewItem(GameManager.Instance.GetDataList().items[0],
             Vector3.zero);
+        Transform effsTr= UIHelper.GetComponentInChild<Transform>(panelObj, "Effs");
+        effs = new();
+        for (int i = 0; i < 3; i++)
+        {
+            effs.Add(effsTr.GetChild(i).GetComponent<MouseEffSet>());
+        }
+        //effs = new();
+        //effs.Add(UIHelper.GetComponentInChild<Toggle>(panelObj, "Eff1"));
+        //effs.Add(UIHelper.GetComponentInChild<Toggle>(panelObj, "Eff2"));
+        //effs.Add(UIHelper.GetComponentInChild<Toggle>(panelObj, "Eff3"));
+        //for (int i = 0; i < 3; i++) Effs
+        //{
+        //    int j = i;
+        //    effs[i].onValueChanged.AddListener((x) => { ChangeEff(x,j); });
+        //}
+        GamePlayManager.Instance.panel = this;
         Reflash();
     }
 
-    private void Reflash()
+    public void Reflash()
     {
         int count = GamePlayManager.Instance.GetRes().partons.Count - 1 - GamePlayManager.Instance.GetRes().partonIndex;
         if (count > 0)
@@ -44,6 +61,17 @@ public class GamePlayPanel : BasePanel
         else
         {
             boxCountText.text = GameManager.Instance.GetDescriptionByID(4002);
+        }
+        foreach (var item in effs)
+        {
+            if (item.clickEff == GamePlayManager.Instance.currentClickEff)
+            {
+                item.animator.Play("choseing");
+            }
+            else
+            {
+                item.animator.Play("idle");
+            }
         }
     }
 

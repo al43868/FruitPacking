@@ -18,6 +18,7 @@ public class GamePlayManager : SerializedSingleTion<GamePlayManager>
     /// panel中的分层
     /// </summary>
     public Transform boxs, items;
+
     /// <summary>
     /// 鼠标位置
     /// </summary>
@@ -28,6 +29,9 @@ public class GamePlayManager : SerializedSingleTion<GamePlayManager>
     /// </summary>
     [SerializeField]
     private ItemUI currentItem;
+
+    
+
     public ItemUI CurrentItem
     {
         get { return currentItem; }
@@ -91,7 +95,7 @@ public class GamePlayManager : SerializedSingleTion<GamePlayManager>
     /// <summary>
     /// 鼠标所在可选点击效果
     /// </summary>
-    public ClickEff mouseEff;
+    //public ClickEff mouseEff;
     /// <summary>
     /// 物品prefab
     /// </summary>
@@ -100,6 +104,9 @@ public class GamePlayManager : SerializedSingleTion<GamePlayManager>
     /// 玩法中的资源
     /// </summary>
     private GamePlayRes res;
+    public GamePlayPanel panel;
+    public ClickEff mouseEff;
+
     public void Init()
     {
         res = new();
@@ -150,6 +157,19 @@ public class GamePlayManager : SerializedSingleTion<GamePlayManager>
         GameManager.Instance.LoadScene(2);
     }
 
+    internal void SetClickEff(ClickEff clickEff)
+    {
+        if (currentClickEff == clickEff)
+        {
+            currentClickEff = ClickEff.None;
+        }
+        else
+        {
+            currentClickEff = clickEff;
+        }
+        panel.Reflash();
+    }
+
     internal void SetMouseItem(ItemUI itemObj, bool v)
     {
         if (mouseItem == null)
@@ -198,8 +218,7 @@ public class GamePlayManager : SerializedSingleTion<GamePlayManager>
 
         }
     }
-
-    internal void SetMouseClickEff(ClickEff clickEff, bool v)
+    internal void SetMouseEff(ClickEff clickEff, bool v)
     {
         if (v)
         {
@@ -274,6 +293,10 @@ public class GamePlayManager : SerializedSingleTion<GamePlayManager>
                     {
                         currentClickEff = mouseEff;
                     }
+                    else
+                    {
+                        currentClickEff = ClickEff.None;
+                    }
                 }
                 else
                 {
@@ -284,6 +307,7 @@ public class GamePlayManager : SerializedSingleTion<GamePlayManager>
                 }
             }
         }
+        panel.Reflash();
     }
 
     private void GetEffNewItem(ClickEff eff, ItemUI mouseItem)
@@ -331,5 +355,6 @@ public enum ClickEff
 {
     None,
     Big,
-    Small
+    Small,
+    Random
 }

@@ -59,6 +59,22 @@ MonoBehaviour:
     m_Key: LevelRandom
     m_Metadata:
       m_Items: []
+  - m_Id: 791119412273152
+    m_Key: HomeLevel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 791647600975872
+    m_Key: StartItemCount
+    m_Metadata:
+      m_Items: []
+  - m_Id: 791915063353344
+    m_Key: Parton
+    m_Metadata:
+      m_Items: []
+  - m_Id: 796050353496064
+    m_Key: NextDay
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

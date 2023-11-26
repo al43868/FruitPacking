@@ -13,47 +13,65 @@ public class DevelopMainPanel : BasePanel
     private TMP_Text coinText;
     private int panelIndex;
     private List<Transform> panels;
-    private List<TMP_Text> clickLevels, clickValues;
+    private List<TMP_Text> clickLevels, clickValues, baseLevels, baseValues;
     public DevelopMainPanel() : base(_type)
     {
-        
+
     }
     public override void OnStart()
     {
         base.OnStart();
         UIHelper.GetComponentInChild<Button>(panelObj,
-           "Play").onClick.AddListener(() => 
-            { 
-               AudioManager.Instance.PlayMusic(Music.Button1);
-               Play();
-           });
+           "Play").onClick.AddListener(() =>
+            {
+                AudioManager.Instance.PlayMusic(Music.Button1);
+                Play();
+            });
         coinText = UIHelper.GetComponentInChild<TMP_Text>(panelObj, "CoinText");
         UIHelper.GetComponentInChild<Button>(panelObj, "LeftButton").onClick.AddListener(
-            () => {
+            () =>
+            {
                 AudioManager.Instance.PlayMusic(Music.Button1);
                 ChangePanel(-1);
             });
         UIHelper.GetComponentInChild<Button>(panelObj, "RightButton").onClick.AddListener(
-            () => {
+            () =>
+            {
                 AudioManager.Instance.PlayMusic(Music.Button1);
                 ChangePanel(1);
             });
-        panelIndex = 1;
         Transform panelsTr = UIHelper.GetComponentInChild<Transform>(panelObj, "Panels");
         panels = new();
         for (int i = 0; i < panelsTr.childCount; i++)
         {
             panels.Add(panelsTr.GetChild(i));
         }
+        //»ù´¡panel
+        baseLevels = new();
+        baseValues = new();
+        Transform baseLevelUps = UIHelper.GetComponentInChild<Transform>(panelObj, "LevelUps");
+        for (int i = 0; i < baseLevelUps.childCount; i++)
+        {
+            Transform clickUp = baseLevelUps.GetChild(i);
+            int j = 200 + i;
+            clickUp.GetComponent<Button>().onClick.AddListener(() =>
+            {
+                AudioManager.Instance.PlayMusic(Music.Button1);
+                LevelUP(j);
+            });
+            baseLevels.Add(clickUp.GetChild(1).GetComponent<TMP_Text>());
+            baseValues.Add(clickUp.GetChild(2).GetComponent<TMP_Text>());
+        }
+
 
         //¿Æ¼¼panel
         clickLevels = new();
-        clickValues= new();
+        clickValues = new();
         Transform clickEffs = UIHelper.GetComponentInChild<Transform>(panelObj, "ClickEffLevelUP");
         for (int i = 0; i < clickEffs.childCount; i++)
         {
             Transform clickUp = clickEffs.GetChild(i);
-            int j = i;
+            int j = 100 + i;
             clickUp.GetComponent<Button>().onClick.AddListener(() =>
             {
                 AudioManager.Instance.PlayMusic(Music.Button1);
@@ -62,27 +80,31 @@ public class DevelopMainPanel : BasePanel
             clickLevels.Add(clickUp.GetChild(1).GetComponent<TMP_Text>());
             clickValues.Add(clickUp.GetChild(2).GetComponent<TMP_Text>());
         }
+        for (int i = 1; i < panels.Count; i++)
+        {
+            panels[i].gameObject.SetActive(false);
+        }
+        panelIndex = 0;
         Reflash();
     }
 
     private void LevelUP(int j)
     {
-        int i = 100 + j;
-        int needCoin = GameManager.Instance.GetDataList().levelUps[i][GameSaver.Instance.GetData().levelUPs[i]];
-        if (needCoin> GameSaver.Instance.GetData().coin)
+        int needCoin = GameManager.Instance.GetDataList().levelUps[j][GameSaver.Instance.GetData().levelUPs[j]];
+        if (needCoin > GameSaver.Instance.GetData().coin)
         {
             GameManager.Instance.Log(2005);
         }
         else
         {
-            if (GameSaver.Instance.GetData().levelUPs[i] >= 5)
+            if (GameSaver.Instance.GetData().levelUPs[j] >= 5)
             {
                 GameManager.Instance.Log(2006);
             }
             else
             {
                 GameSaver.Instance.GetData().coin -= needCoin;
-                GameSaver.Instance.GetData().levelUPs[i]++;
+                GameSaver.Instance.GetData().levelUPs[j]++;
                 Reflash();
             }
         }
@@ -93,7 +115,7 @@ public class DevelopMainPanel : BasePanel
         //todo need
         panels[panelIndex].gameObject.SetActive(false);
         int allPanelCount = 1;
-        if (panelIndex+v > allPanelCount)
+        if (panelIndex + v > allPanelCount)
         {
             panelIndex = 0;
         }
@@ -107,7 +129,6 @@ public class DevelopMainPanel : BasePanel
         }
         panels[panelIndex].gameObject.SetActive(true);
         Reflash();
-
     }
 
     public void Reflash()
@@ -115,6 +136,15 @@ public class DevelopMainPanel : BasePanel
         coinText.text = GameSaver.Instance.GetData().coin.ToString();
         switch (panelIndex)
         {
+            case 0:
+                for (int i = 0; i < baseLevels.Count; i++)
+                {
+                    int index = 200 + i;
+                    baseLevels[i].text = GameSaver.Instance.GetData().levelUPs[index].ToString();
+                    baseValues[i].text = GameManager.Instance.GetDataList().
+                       levelUps[index][GameSaver.Instance.GetData().levelUPs[index]].ToString();
+                }
+                break;
             case 1:
                 for (int i = 0; i < clickLevels.Count; i++)
                 {

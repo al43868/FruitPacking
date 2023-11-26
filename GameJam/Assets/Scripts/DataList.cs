@@ -23,5 +23,9 @@ public class DataList : SerializedScriptableObject
             levelUps.Add(100 + i * 3 + 1, new List<int>(5) { 700, 2500, 6000, 12000, 30000 });
             levelUps.Add(100 + i * 3 + 2, new List<int>(5) { 1100, 1500, 3000, 4500, 9000 });
         }
+        levelUps.Add(200, new List<int>(5) { 300, 900, 3000, 4500, 9000 });
+        levelUps.Add(201, new List<int>(5) { 300, 900, 3000, 4500, 9000 });
+        levelUps.Add(202, new List<int>(5) { 300, 900, 3000, 4500, 9000 });
+
     }
 }

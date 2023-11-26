@@ -7,10 +7,6 @@ using UnityEngine;
 public class GameData 
 {
     /// <summary>
-    /// 基地等级
-    /// </summary>
-    public int homeLevel;
-    /// <summary>
     /// 初始物品数量
     /// </summary>
     public int startItemLevel;
@@ -21,12 +17,21 @@ public class GameData
     public int coin;
     public GameData()
     {
-        homeLevel= 0;
         startItemLevel= 0;
         levelUPs = new();
+        //clickeffpanel
+        //9种ClickEff升级
         for (int i = 0; i < 9; i++)
         {
             levelUPs.Add(100 + i, 0);
+        }
+        //basePanel
+        //200 基地等级 
+        //201 初始水果数量
+        //202 客源等级
+        for (int i = 0; i < 3; i++)
+        {
+            levelUPs.Add(200 + i, 0);
         }
         coin = 0;
     }
