@@ -29,7 +29,7 @@ public class ItemModel : SerializedScriptableObject
     /// </summary>
     public List<ItemModel> highItems;
     public float wigh, high;
-    public Sprite sprite;
+    public List<Sprite> sprites;
     public List<Vector2Int> GetRound()
     {
         return GameManager.Instance.GetDataList().rounds[roundID];

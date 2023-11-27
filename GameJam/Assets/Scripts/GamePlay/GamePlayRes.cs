@@ -35,5 +35,6 @@ public class GamePlayRes
         partonIndex = -1;
         smallEffCount = 2;
         bigEffCount = 2;
+        randomEffCount = 2;
     }
 }

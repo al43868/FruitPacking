@@ -26,9 +26,10 @@ public class Grid : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public void Init()
     {
-        shiny=GetComponent<UIShiny>();
+        shiny=this.gameObject.AddComponent<UIShiny>();
         image = GetComponent<Image>();
-        shiny.Play();
+        shiny.effectPlayer.loop = true;
+        shiny.Play(true);
     }
     internal void Choseing()
     {

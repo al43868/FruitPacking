@@ -28,7 +28,8 @@ public class ItemUI : SerializedMonoBehaviour, IPointerEnterHandler, IPointerExi
     {
         item = p;
         this.GetComponent<RectTransform>().sizeDelta=new(p.model.wigh*100,p.model.high*100);
-        image.sprite=p.model.sprite;
+        int spriteIndex= UnityEngine.Random.Range(0,p.model.sprites.Count);
+        image.sprite=p.model.sprites[spriteIndex];
     }
 
     internal void SetParent(Transform mousePos)

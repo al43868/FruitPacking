@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,9 +11,9 @@ public class GamePlayPanel : BasePanel
     private static readonly string _name = "GamePlayPanel";
     private static readonly string _path = "GamePlayPanel";
     private static readonly UIType _type = new(_name, _path);
-    private TMP_Text boxCountText;
+    private TMP_Text boxCountText, coinText;
     private List<MouseEffSet> effs;
-    public Animator bgAnim;
+    public Animator bgAnim, nextBoxAnim;
     public TMP_Text Eff1Count, Eff2Count, Eff3Count;
     public GamePlayPanel() : base(_type)
     {
@@ -25,16 +26,11 @@ public class GamePlayPanel : BasePanel
         GamePlayManager.Instance.boxs = UIHelper.GetComponentInChild<Transform>(panelObj, "Boxs");
         GamePlayManager.Instance.items = UIHelper.GetComponentInChild<Transform>(panelObj, "Items");
 
-        Button nextBox = UIHelper.GetComponentInChild<Button>(panelObj, "NextBox");
-        nextBox.onClick.AddListener(() =>
-        {
-            AudioManager.Instance.PlayMusic(Music.Button1);
-            NextBox();
-        });
-        boxCountText = nextBox.transform.GetChild(0).GetComponent<TMP_Text>();
-        GamePlayManager.Instance.CreatNewItem(GameManager.Instance.GetDataList().items[0],
-            Vector3.zero);
-        Transform effsTr= UIHelper.GetComponentInChild<Transform>(panelObj, "Effs");
+        boxCountText = UIHelper.GetComponentInChild<TMP_Text>(panelObj, "BoxCountText");
+        coinText = UIHelper.GetComponentInChild<TMP_Text>(panelObj, "CoinText");
+        coinText.text = GameSaver.Instance.GetData().coin.ToString();
+
+        Transform effsTr = UIHelper.GetComponentInChild<Transform>(panelObj, "Effs");
         effs = new();
         for (int i = 0; i < 3; i++)
         {
@@ -49,15 +45,16 @@ public class GamePlayPanel : BasePanel
         //    int j = i;
         //    effs[i].onValueChanged.AddListener((x) => { ChangeEff(x,j); });
         //}
-        Eff1Count= UIHelper.GetComponentInChild<TMP_Text>(panelObj, "Eff1Text");
+        Eff1Count = UIHelper.GetComponentInChild<TMP_Text>(panelObj, "Eff1Text");
         Eff2Count = UIHelper.GetComponentInChild<TMP_Text>(panelObj, "Eff2Text");
         Eff3Count = UIHelper.GetComponentInChild<TMP_Text>(panelObj, "Eff3Text");
 
         GamePlayManager.Instance.panel = this;
-        Transform bgs= UIHelper.GetComponentInChild<Transform>(panelObj, "Bgs");
-        //todo bg«–ªª
+        Transform bgs = UIHelper.GetComponentInChild<Transform>(panelObj, "Bgs");
+        //todo zhenzheng bg«–ªª
         int bgIndex = GameSaver.Instance.GetData().levelUPs[200];
-        bgAnim=bgs.GetChild(0).GetComponent<Animator>();
+        bgAnim = bgs.GetChild(0).GetComponent<Animator>();
+        nextBoxAnim = UIHelper.GetComponentInChild<Animator>(panelObj, "NextBox");
         PlayBGAnim(0);
 
         Reflash();
@@ -66,14 +63,8 @@ public class GamePlayPanel : BasePanel
     public void Reflash()
     {
         int count = GamePlayManager.Instance.GetRes().partons.Count - 1 - GamePlayManager.Instance.GetRes().partonIndex;
-        if (count > 0)
-        {
-            boxCountText.text = GameManager.Instance.GetDescriptionByID(4001) + count;
-        }
-        else
-        {
-            boxCountText.text = GameManager.Instance.GetDescriptionByID(4002);
-        }
+        boxCountText.text = count.ToString();
+
         foreach (var item in effs)
         {
             if (item.clickEff == GamePlayManager.Instance.currentClickEff)
@@ -103,8 +94,29 @@ public class GamePlayPanel : BasePanel
             boxCountText.text = GameManager.Instance.GetDescriptionByID(4002);
         }
     }
+
+    internal void GetCoin(int coin, int i)
+    {
+        int endCoin = coin + i;
+        DOTween.To(() => endCoin, (value) =>
+        {
+            coinText.text = value.ToString();
+        }, coin, 0.5f).SetEase(Ease.Linear);
+    }
+
     public void PlayBGAnim(int speed)
     {
         bgAnim.speed = speed;
+    }
+    public void NextBox(bool isnext)
+    {
+        if (isnext)
+        {
+            nextBoxAnim.Play("moveing");
+        }
+        else
+        {
+            nextBoxAnim.Play("idle");
+        }
     }
 }

@@ -104,12 +104,26 @@ public class GamePlayManager : SerializedSingleTion<GamePlayManager>
     /// 玩法中的资源
     /// </summary>
     private GamePlayRes res;
+    /// <summary>
+    /// 主菜单
+    /// </summary>
     public GamePlayPanel panel;
+    /// <summary>
+    /// 鼠标所在可选点击效果
+    /// </summary>
     public ClickEff mouseEff;
+    /// <summary>
+    /// 是否下一个box
+    /// </summary>
+    public bool nextBox;
+    /// <summary>
+    /// 是否动画中
+    /// </summary>
+    public bool isAnim;
     public void Init()
     {
         res = new();
-
+        isAnim = false;
     }
     public GamePlayRes GetRes()
     {
@@ -118,6 +132,7 @@ public class GamePlayManager : SerializedSingleTion<GamePlayManager>
     [Button]
     public async void NextBox()
     {
+        if (isAnim) return;
         if((res.partons.Count - 1)<=res.partonIndex)
         {
             EndDay();
@@ -125,6 +140,8 @@ public class GamePlayManager : SerializedSingleTion<GamePlayManager>
         else
         {
             panel.PlayBGAnim(1);
+            panel.NextBox(true);
+            isAnim = true;
             //当前盒子
             if (currentBox != null)
             {
@@ -135,7 +152,7 @@ public class GamePlayManager : SerializedSingleTion<GamePlayManager>
                 {
                     i += item.item.GetValue();
                 }
-                GameSaver.Instance.GetData().coin += i;
+                GetCoin(i);
                 //todo 真正获取金钱
                 _ = currentBox.transform.DOLocalMove(new Vector3(-2000, 0, 0), 2f);
             }
@@ -151,8 +168,15 @@ public class GamePlayManager : SerializedSingleTion<GamePlayManager>
             go.Init();
             
             panel.PlayBGAnim(0);
-
+            panel.NextBox(false);
+            isAnim=false;
         }
+    }
+
+    private void GetCoin(int i)
+    {
+        panel.GetCoin(GameSaver.Instance.GetData().coin, i);
+        GameSaver.Instance.GetData().coin += i;
     }
 
     private void EndDay()
@@ -290,6 +314,10 @@ public class GamePlayManager : SerializedSingleTion<GamePlayManager>
             }
             else
             {
+                if (nextBox)
+                {
+                    NextBox();
+                }
                 if (mouseEff != ClickEff.None)
                 {
                     if (mouseEff != currentClickEff)
