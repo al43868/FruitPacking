@@ -232,4 +232,9 @@ public class GameManager : SerializedSingleTion<GameManager>
     //     Debug.Log(string.Format("截取了一张图片: {0}", file));
     //     UnityEditor.AssetDatabase.Refresh();
     // }
+    [Button]
+    public void DebugTime()
+    {
+        print(Time.timeScale);
+    }
 }

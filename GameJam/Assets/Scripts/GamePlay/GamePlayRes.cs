@@ -13,6 +13,10 @@ public class GamePlayRes
     /// </summary>
     public int partonIndex;
     /// <summary>
+    /// 随机使用次数
+    /// </summary>
+    public int randomEffCount;
+    /// <summary>
     /// 缩小使用次数
     /// </summary>
     public int smallEffCount;

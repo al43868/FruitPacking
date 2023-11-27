@@ -12,6 +12,8 @@ public class GamePlayPanel : BasePanel
     private static readonly UIType _type = new(_name, _path);
     private TMP_Text boxCountText;
     private List<MouseEffSet> effs;
+    public Animator bgAnim;
+    public TMP_Text Eff1Count, Eff2Count, Eff3Count;
     public GamePlayPanel() : base(_type)
     {
 
@@ -47,7 +49,17 @@ public class GamePlayPanel : BasePanel
         //    int j = i;
         //    effs[i].onValueChanged.AddListener((x) => { ChangeEff(x,j); });
         //}
+        Eff1Count= UIHelper.GetComponentInChild<TMP_Text>(panelObj, "Eff1Text");
+        Eff2Count = UIHelper.GetComponentInChild<TMP_Text>(panelObj, "Eff2Text");
+        Eff3Count = UIHelper.GetComponentInChild<TMP_Text>(panelObj, "Eff3Text");
+
         GamePlayManager.Instance.panel = this;
+        Transform bgs= UIHelper.GetComponentInChild<Transform>(panelObj, "Bgs");
+        //todo bg«–ªª
+        int bgIndex = GameSaver.Instance.GetData().levelUPs[200];
+        bgAnim=bgs.GetChild(0).GetComponent<Animator>();
+        PlayBGAnim(0);
+
         Reflash();
     }
 
@@ -73,6 +85,9 @@ public class GamePlayPanel : BasePanel
                 item.animator.Play("idle");
             }
         }
+        Eff1Count.text = GamePlayManager.Instance.GetRes().randomEffCount.ToString();
+        Eff2Count.text = GamePlayManager.Instance.GetRes().smallEffCount.ToString();
+        Eff3Count.text = GamePlayManager.Instance.GetRes().bigEffCount.ToString();
     }
 
     private void NextBox()
@@ -87,5 +102,9 @@ public class GamePlayPanel : BasePanel
         {
             boxCountText.text = GameManager.Instance.GetDescriptionByID(4002);
         }
+    }
+    public void PlayBGAnim(int speed)
+    {
+        bgAnim.speed = speed;
     }
 }

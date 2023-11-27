@@ -106,7 +106,6 @@ public class GamePlayManager : SerializedSingleTion<GamePlayManager>
     private GamePlayRes res;
     public GamePlayPanel panel;
     public ClickEff mouseEff;
-
     public void Init()
     {
         res = new();
@@ -125,6 +124,7 @@ public class GamePlayManager : SerializedSingleTion<GamePlayManager>
         }
         else
         {
+            panel.PlayBGAnim(1);
             //µ±Ç°ºÐ×Ó
             if (currentBox != null)
             {
@@ -149,6 +149,9 @@ public class GamePlayManager : SerializedSingleTion<GamePlayManager>
             await go.transform.DOLocalMove(Vector3.zero, 2f);
             currentBox = go;
             go.Init();
+            
+            panel.PlayBGAnim(0);
+
         }
     }
 
