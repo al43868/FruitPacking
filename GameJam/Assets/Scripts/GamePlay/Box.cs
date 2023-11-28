@@ -98,8 +98,8 @@ public class Box : MonoBehaviour
 
     internal Vector3 GetItemPos(Vector2Int pos, ItemUI currentItem)
     {
-        return grids[pos].transform.position + new Vector3(-(currentItem.item.model.wigh-1) * 50,
-                        (currentItem.item.model.high-1) * 50, 0);
+        return grids[pos].transform.position + new Vector3(-(currentItem.item.model.round - 1) * 50,
+                        (currentItem.item.model.round - 1) * 50, 0);
     }
         internal void RemoveItem(ItemUI mouseItem,Vector2Int pos)
     {

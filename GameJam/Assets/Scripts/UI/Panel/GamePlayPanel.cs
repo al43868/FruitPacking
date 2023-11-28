@@ -56,7 +56,7 @@ public class GamePlayPanel : BasePanel
         bgAnim = bgs.GetChild(0).GetComponent<Animator>();
         nextBoxAnim = UIHelper.GetComponentInChild<Animator>(panelObj, "NextBox");
         PlayBGAnim(0);
-
+        GamePlayManager.Instance.CreatNewItem(GameManager.Instance.GetDataList().items[0], Vector3.zero);
         Reflash();
     }
 

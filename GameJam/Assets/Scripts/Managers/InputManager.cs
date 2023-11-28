@@ -21,7 +21,6 @@ public class InputManager : SerializedSingleTion<InputManager>
         gamePlay.Play.MouseMove.performed += MouseMove;
         gamePlay.Play.Rotate.performed += Rotate;
         gamePlay.Play.LeftClick.performed += LeftClick;
-
         gamePlay.Play.Enable();
     }
 

@@ -5,6 +5,7 @@ using UnityEngine;
 using Sirenix.OdinInspector;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using System.Drawing.Drawing2D;
 
 public class ItemObj
 {
@@ -20,28 +21,103 @@ public class ItemObj
     }
     internal List<Vector2Int> GetRound(Vector2Int pos)
     {
-        List<Vector2Int> result = new ();
+        List<Vector2Int> result = TransformList(model.GetRound(), dir);
+        for (int i = 0; i < result.Count; i++)
+        {
+            result[i] = result[i] + pos;
+        }
+        return result;
+    }
+    
+    public List<Vector2Int> TransformList(List<Vector2Int> originalList,Dir dir)
+    {
+        int rows = 0;
+        int cols = 0;
+
+        foreach (var vector in originalList)
+        {
+            rows = Math.Max(rows, vector.y + 1);
+            cols = Math.Max(cols, vector.x + 1);
+        }
+
+        int[,] array = new int[rows, cols];
+
+        foreach (var vector in originalList)
+        {
+            array[vector.y, vector.x] = 1;
+        }
+        
+        int[,] rotatedArray = new int[rows, cols];
         switch (dir)
         {
             case Dir.Up:
-                foreach (var item in model.GetRound())
-                {
-                    result.Add(item+pos);
-                }
+                rotatedArray = array;
                 break;
             case Dir.Down:
+                rotatedArray= RotateArray(array, 180);
                 break;
             case Dir.Left:
+                rotatedArray = RotateArray(array, 270);
                 break;
             case Dir.Right:
+                rotatedArray = RotateArray(array, 90);
                 break;
             default:
                 break;
         }
-        return result;
-    }
+        List<Vector2Int> transformedList = new ();
 
-    internal int GetValue()
+        for (int i = 0; i < rotatedArray.GetLength(0); i++)
+        {
+            for (int j = 0; j < rotatedArray.GetLength(1); j++)
+            {
+                if (rotatedArray[i, j] == 1)
+                {
+                    transformedList.Add(new Vector2Int(j, i));
+                }
+            }
+        }
+        return transformedList;
+    }
+    public int[,] RotateArray(int[,] array, int angle)
+    {
+        int rows = array.GetLength(0);
+        int cols = array.GetLength(1);
+        int[,] rotatedArray = new int[cols, rows];
+
+        if (angle == 90)
+        {
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < cols; j++)
+                {
+                    rotatedArray[j, rows - 1 - i] = array[i, j];
+                }
+            }
+        }
+        else if (angle == 180)
+        {
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < cols; j++)
+                {
+                    rotatedArray[cols - 1 - j, rows - 1 - i] = array[i, j];
+                }
+            }
+        }
+        else if (angle == 270)
+        {
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < cols; j++)
+                {
+                    rotatedArray[cols - 1 - j, i] = array[i, j];
+                }
+            }
+        }
+        return rotatedArray;
+    }
+        internal int GetValue()
     {
         switch (itemLevel)
         {

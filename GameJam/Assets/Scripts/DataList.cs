@@ -12,7 +12,6 @@ public class DataList : SerializedScriptableObject
     public List<List<PartonModel>> partons;
     public Dictionary<int, List<int>> levelUps;
 
-
     [Button]
     public void SetLevelUP()
     {
@@ -26,6 +25,7 @@ public class DataList : SerializedScriptableObject
         levelUps.Add(200, new List<int>(5) { 300, 900, 3000, 4500, 9000 });
         levelUps.Add(201, new List<int>(5) { 300, 900, 3000, 4500, 9000 });
         levelUps.Add(202, new List<int>(5) { 300, 900, 3000, 4500, 9000 });
-
+        levelUps.Add(203, new List<int>(5) { 300, 900, 3000, 4500, 9000 }); 
+        levelUps.Add(204, new List<int>(5) { 300, 900, 3000, 4500, 9000 });
     }
 }

@@ -97,6 +97,7 @@ public class DevelopMainPanel : BasePanel
         }
         else
         {
+            //todo zhenzheng 不同的等级上限
             if (GameSaver.Instance.GetData().levelUPs[j] >= 5)
             {
                 GameManager.Instance.Log(2006);

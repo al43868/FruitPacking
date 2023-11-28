@@ -18,7 +18,6 @@ public class GamePlayManager : SerializedSingleTion<GamePlayManager>
     /// panel中的分层
     /// </summary>
     public Transform boxs, items;
-
     /// <summary>
     /// 鼠标位置
     /// </summary>
@@ -29,9 +28,6 @@ public class GamePlayManager : SerializedSingleTion<GamePlayManager>
     /// </summary>
     [SerializeField]
     private ItemUI currentItem;
-
-    
-
     public ItemUI CurrentItem
     {
         get { return currentItem; }
@@ -46,6 +42,7 @@ public class GamePlayManager : SerializedSingleTion<GamePlayManager>
                 else
                 {
                     currentItem.image.raycastTarget = true;
+                    currentItem.image.color = Color.white;
                     currentItem = null;
                 }
             }
@@ -55,7 +52,6 @@ public class GamePlayManager : SerializedSingleTion<GamePlayManager>
                 {
                     currentItem = value;
                     currentItem.SetParent(mousePos);
-
                 }
                 else
                 {
@@ -92,10 +88,6 @@ public class GamePlayManager : SerializedSingleTion<GamePlayManager>
     /// 当前点击效果
     /// </summary>
     public ClickEff currentClickEff;
-    /// <summary>
-    /// 鼠标所在可选点击效果
-    /// </summary>
-    //public ClickEff mouseEff;
     /// <summary>
     /// 物品prefab
     /// </summary>
@@ -242,7 +234,8 @@ public class GamePlayManager : SerializedSingleTion<GamePlayManager>
     {
         if (CurrentItem != null)
         {
-
+            CurrentItem.Rotate();
+            SetMouseGrid(mouseGridPos, true);
         }
     }
     internal void SetMouseEff(ClickEff clickEff, bool v)
@@ -279,6 +272,7 @@ public class GamePlayManager : SerializedSingleTion<GamePlayManager>
                 if (currentBox.SetItem(mouseGridPos, currentItem))
                 {
                     Vector3 v3 = currentBox.GetItemPos(mouseGridPos, currentItem);
+                    CurrentItem.transform.SetParent(currentBox.transform, false);
                     CurrentItem.transform.SetParent(currentBox.transform, false);
                     CurrentItem.transform.position = v3;
                     currentBox.items.Add(CurrentItem);

@@ -27,9 +27,9 @@ public class GameData
         }
         //basePanel
         //200 基地等级 
-        //201 初始水果数量
-        //202 客源等级
-        for (int i = 0; i < 3; i++)
+        //201 客源等级
+        //202-4 货源热亚温
+        for (int i = 0; i < 5; i++)
         {
             levelUPs.Add(200 + i, 0);
         }
