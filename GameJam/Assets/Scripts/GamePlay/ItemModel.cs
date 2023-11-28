@@ -21,17 +21,13 @@ public class ItemModel : SerializedScriptableObject
     /// </summary>
     public int roundID;
     /// <summary>
-    /// 缩小物品
+    /// 同类物品ID
     /// </summary>
-    public List<ItemModel> lowItems;
-    /// <summary>
-    /// 放大物品
-    /// </summary>
-    public List<ItemModel> highItems;
+    public int bindID;
     /// <summary>
     /// 宽与高
     /// </summary>
-    public int round;
+    //public int round;
     /// <summary>
     /// 所有图片
     /// </summary>
@@ -43,6 +39,10 @@ public class ItemModel : SerializedScriptableObject
     public List<Vector2Int> GetRound()
     {
         return GameManager.Instance.GetDataList().rounds[roundID];
+    }
+    public int GetHigh()
+    {
+        return roundID / 100 ;
     }
     public ItemModel()
     {
@@ -58,5 +58,6 @@ public enum ItemType
     yellow,
     purple,
     red,
-    blue
+    blue,
+    orange
 }

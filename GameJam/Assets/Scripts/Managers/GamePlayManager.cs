@@ -350,7 +350,7 @@ public class GamePlayManager : SerializedSingleTion<GamePlayManager>
                     return;
                 }
                 res.bigEffCount--;
-                newItem = mouseItem.item.model.highItems[0];
+                newItem = GameManager.Instance.GetNewItem(mouseItem,ClickEff.Big);
                 break;
             case ClickEff.Small:
                 if (res.smallEffCount <= 0)
@@ -359,7 +359,7 @@ public class GamePlayManager : SerializedSingleTion<GamePlayManager>
                     return;
                 }
                 res.smallEffCount--;
-                newItem = mouseItem.item.model.lowItems[0];
+                newItem = GameManager.Instance.GetNewItem(mouseItem, ClickEff.Small);
                 break;
             default:
                 break;

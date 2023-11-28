@@ -28,4 +28,14 @@ public class DataList : SerializedScriptableObject
         levelUps.Add(203, new List<int>(5) { 300, 900, 3000, 4500, 9000 }); 
         levelUps.Add(204, new List<int>(5) { 300, 900, 3000, 4500, 9000 });
     }
+    public void  Additems(List<ItemModel> newItems)
+    {
+        if (!items.Contains(newItems[0]))
+        {
+            foreach (var item in newItems)
+            {
+                items.Add(item);
+            }
+        }
+    }
 }

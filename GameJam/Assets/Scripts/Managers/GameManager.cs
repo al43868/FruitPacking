@@ -237,4 +237,9 @@ public class GameManager : SerializedSingleTion<GameManager>
     {
         print(Time.timeScale);
     }
+
+    internal ItemModel GetNewItem(ItemUI mouseItem, ClickEff big)
+    {
+        return dataList.items[0];
+    }
 }

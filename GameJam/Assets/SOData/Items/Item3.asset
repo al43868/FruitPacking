@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 876d2ffc74b748f4a86345ea3ca6b02c, type: 3}
-  m_Name: Item1
+  m_Name: Item3
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -21,10 +21,10 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  ID: 1001
-  value: 40
+  ID: 1003
+  value: 50
   roundID: 221
   bindID: 8001
   sprites:
-  - {fileID: -1667717011, guid: a329c1f5d7db8d7479bbe7fd66efb8a7, type: 3}
-  tags: 020000000600000003000000
+  - {fileID: -1098306521, guid: a329c1f5d7db8d7479bbe7fd66efb8a7, type: 3}
+  tags: 020000000400000003000000
