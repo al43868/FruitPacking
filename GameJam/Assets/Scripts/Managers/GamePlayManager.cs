@@ -342,7 +342,7 @@ public class GamePlayManager : SerializedSingleTion<GamePlayManager>
                 {
                     if (currentBox.items.Contains(MouseItem))
                     {
-                        currentBox.RemoveItem(MouseItem, mouseGridPos);
+                        currentBox.RemoveItem(MouseItem);
                         CurrentItem = MouseItem;
                         MouseItem = null;
                         return;

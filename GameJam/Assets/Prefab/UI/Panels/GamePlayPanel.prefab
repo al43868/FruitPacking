@@ -1987,7 +1987,6 @@ RectTransform:
   m_Children:
   - {fileID: 5743881972729138667}
   - {fileID: 2110080669750291741}
-  - {fileID: 7350302082498635502}
   - {fileID: 893704106236199648}
   - {fileID: 6646894296894761388}
   - {fileID: 3539844273594675082}
@@ -1996,6 +1995,7 @@ RectTransform:
   - {fileID: 1354904952844252682}
   - {fileID: 2569951675062137374}
   - {fileID: 4321861598842367340}
+  - {fileID: 7350302082498635502}
   m_Father: {fileID: 0}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

@@ -26,5 +26,5 @@ MonoBehaviour:
   roundID: 111
   bindID: 8003
   sprites:
-  - {fileID: 727341901, guid: ef3d46320a9d755448172f825510201f, type: 3}
-  tags: 7517000072170000
+  - {fileID: 21300000, guid: 472ed33fb03353b4895bf4ee367405dc, type: 3}
+  tags: 7317000074170000

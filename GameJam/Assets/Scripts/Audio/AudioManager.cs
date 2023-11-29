@@ -43,6 +43,7 @@ public class AudioManager : SerializedSingleTion<AudioManager>
     /// <param name="isBack">ÊÇ·ñÎª±³¾°Òô</param>
     public void PlayMusic(Music name, bool isBack = false)
     {
+        if (bg == name) return;
         foreach (var item in audioTypes)
         {
             if (item.music == name)
@@ -53,7 +54,7 @@ public class AudioManager : SerializedSingleTion<AudioManager>
                     {
                         Release(bkAudio);
                     }
-
+                    bg = name;
                     bkAudio = audioPool.Get(item);
                 }
                 else

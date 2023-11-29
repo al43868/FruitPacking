@@ -91,6 +91,7 @@ public class Box : MonoBehaviour
         }
         foreach (var item in currentItem.item.GetRound(mouseGridPos))
         {
+            currentItem.boxPos = mouseGridPos;
             grids[item].isSet = true;
         }
         return true;
@@ -101,9 +102,9 @@ public class Box : MonoBehaviour
         return grids[pos].transform.position + new Vector3(-(currentItem.item.model.GetHigh() - 1) * 50,
                         (currentItem.item.model.GetHigh() - 1) * 50, 0);
     }
-        internal void RemoveItem(ItemUI mouseItem,Vector2Int pos)
+    internal void RemoveItem(ItemUI mouseItem)
     {
-        foreach (var item in mouseItem.item.GetRound(pos))
+        foreach (var item in mouseItem.item.GetRound(mouseItem.boxPos))
         {
             if (grids.ContainsKey(item))
             {

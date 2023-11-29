@@ -11,7 +11,7 @@ public class ItemUI : SerializedMonoBehaviour, IPointerEnterHandler, IPointerExi
     public ItemObj item;
     public Material outLine;
     public Image image;
-
+    public Vector2Int boxPos;
     public void OnPointerEnter(PointerEventData eventData)
     {
         image.material = outLine;
@@ -30,6 +30,7 @@ public class ItemUI : SerializedMonoBehaviour, IPointerEnterHandler, IPointerExi
         this.GetComponent<RectTransform>().sizeDelta=new(p.model.GetHigh() * 100,p.model.GetHigh() * 100);
         int spriteIndex= UnityEngine.Random.Range(0,p.model.sprites.Count);
         image.sprite=p.model.sprites[spriteIndex];
+        image.alphaHitTestMinimumThreshold = 0.5f;
     }
 
     internal void SetParent(Transform mousePos)
@@ -37,7 +38,7 @@ public class ItemUI : SerializedMonoBehaviour, IPointerEnterHandler, IPointerExi
         image.raycastTarget = false;
         image.color = new(1, 1, 1, 0.5f);
         transform.SetParent(mousePos,false);
-        transform.localPosition = new(-item.model.GetHigh() * 50,item.model.GetHigh() * 50, 0);
+        transform.localPosition = new(-item.model.GetHigh() * 40,item.model.GetHigh() * 40, 0);
     }
 
     internal void Rotate()
