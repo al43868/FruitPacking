@@ -24,7 +24,7 @@ public class AudioType
     public int ID;
     public AudioType()
     {
-        ID = 11001;
+        ID = 9001;
         volume = 1;
         pitch = 1;
     }

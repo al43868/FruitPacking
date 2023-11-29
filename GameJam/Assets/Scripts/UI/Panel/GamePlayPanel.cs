@@ -53,7 +53,6 @@ public class GamePlayPanel : BasePanel
         bgAnim = bgs.GetChild(0).GetComponent<Animator>();
         nextBoxAnim = UIHelper.GetComponentInChild<Animator>(panelObj, "NextBox");
         PlayBGAnim(0);
-        GamePlayManager.Instance.CreatNewItem(GameManager.Instance.GetDataList().items[0], Vector3.zero);
 
         parton = UIHelper.GetComponentInChild<Transform>(panelObj, "Parton");
         partonText = parton.GetChild(0).GetComponent<TMP_Text>();
@@ -157,7 +156,14 @@ public class GamePlayPanel : BasePanel
         else
         {
             itemDes.gameObject.SetActive(true);
-            itemDesText.text = GameManager.Instance.GetNameByID(item.item.model.ID);
+            string str = "";
+            str+= GameManager.Instance.GetNameByID(item.item.model.ID);
+            str+= "\r\n<color=yellow>" + item.item.model.value + "</color>\r\n";
+            foreach (var tag in item.item.model.tags)
+            {
+               str+= GameManager.Instance.GetNameByID((int)tag)+" ";
+            }
+            itemDesText.text = str;
         }
     }
 }

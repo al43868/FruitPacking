@@ -34,7 +34,7 @@ public class AudioManager : SerializedSingleTion<AudioManager>
         {
             miuscMixer.SetFloat("EffVolume", -80);
         }
-        AudioManager.Instance.PlayMusic(Music.BG3, true);
+        PlayMusic(Music.BG1, true);
     }
     /// <summary>
     ///≤•∑≈“Ù¿÷
@@ -125,10 +125,5 @@ public enum Music
     BG1,
     BG2,
     BG3,
-    GameWin,
-    UIEff1,
-    UIEff2,
-    Fight1,
-    Hit1,
-    Hit2,
+    GameEff1
 }

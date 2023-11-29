@@ -606,8 +606,8 @@
   },
   {
     "ID": 3004,
-    "Name": "",
-    "Description": "",
+    "Name": "填满箱子",
+    "Description": "填满箱子所有格子",
     "Name_en": "",
     "Des_en": "",
     "Column5": 0.0,
@@ -615,8 +615,8 @@
   },
   {
     "ID": 3005,
-    "Name": "",
-    "Description": "",
+    "Name": "填满半个箱子",
+    "Description": "至少填满半个箱子",
     "Name_en": "",
     "Des_en": "",
     "Column5": 0.0,
@@ -624,8 +624,8 @@
   },
   {
     "ID": 3006,
-    "Name": "",
-    "Description": "",
+    "Name": "不要类型",
+    "Description": "不想要这种类型的水果",
     "Name_en": "",
     "Des_en": "",
     "Column5": 0.0,
@@ -633,8 +633,8 @@
   },
   {
     "ID": 3007,
-    "Name": "",
-    "Description": "",
+    "Name": "要品种",
+    "Description": "想要这种品种的水果",
     "Name_en": "",
     "Des_en": "",
     "Column5": 0.0,
@@ -814,7 +814,7 @@
   {
     "ID": 6004,
     "Name": "绿",
-    "Description": "",
+    "Description": "绿",
     "Name_en": "",
     "Des_en": "",
     "Column5": 0.0,
@@ -823,7 +823,7 @@
   {
     "ID": 6005,
     "Name": "黄",
-    "Description": "",
+    "Description": "黄",
     "Name_en": "",
     "Des_en": "",
     "Column5": 0.0,
@@ -832,7 +832,7 @@
   {
     "ID": 6006,
     "Name": "紫",
-    "Description": "",
+    "Description": "紫",
     "Name_en": "",
     "Des_en": "",
     "Column5": 0.0,
@@ -841,7 +841,7 @@
   {
     "ID": 6007,
     "Name": "红",
-    "Description": "",
+    "Description": "红",
     "Name_en": "",
     "Des_en": "",
     "Column5": 0.0,
@@ -850,7 +850,7 @@
   {
     "ID": 6008,
     "Name": "蓝",
-    "Description": "",
+    "Description": "蓝",
     "Name_en": "",
     "Des_en": "",
     "Column5": 0.0,
@@ -858,8 +858,8 @@
   },
   {
     "ID": 6009,
-    "Name": "",
-    "Description": "",
+    "Name": "橙",
+    "Description": "橙",
     "Name_en": "",
     "Des_en": "",
     "Column5": 0.0,
@@ -994,6 +994,69 @@
   {
     "ID": 8001,
     "Name": "西瓜",
+    "Description": "西瓜",
+    "Name_en": "",
+    "Des_en": "",
+    "Column5": 0.0,
+    "Column6": ""
+  },
+  {
+    "ID": 8002,
+    "Name": "苹果",
+    "Description": "苹果",
+    "Name_en": "",
+    "Des_en": "",
+    "Column5": 0.0,
+    "Column6": ""
+  },
+  {
+    "ID": 8003,
+    "Name": "葡萄",
+    "Description": "葡萄",
+    "Name_en": "",
+    "Des_en": "",
+    "Column5": 0.0,
+    "Column6": ""
+  },
+  {
+    "ID": 8004,
+    "Name": "菠萝",
+    "Description": "菠萝",
+    "Name_en": "",
+    "Des_en": "",
+    "Column5": 0.0,
+    "Column6": ""
+  },
+  {
+    "ID": 8005,
+    "Name": "橘子",
+    "Description": "橘子",
+    "Name_en": "",
+    "Des_en": "",
+    "Column5": 0.0,
+    "Column6": ""
+  },
+  {
+    "ID": 8006,
+    "Name": "芒果",
+    "Description": "芒果",
+    "Name_en": "",
+    "Des_en": "",
+    "Column5": 0.0,
+    "Column6": ""
+  },
+  {
+    "ID": 8007,
+    "Name": "",
+    "Description": "",
+    "Name_en": "",
+    "Des_en": "",
+    "Column5": 0.0,
+    "Column6": ""
+  },
+  {
+    "ID": 8008,
+    "Name": "",
     "Description": "",
     "Name_en": "",
     "Des_en": "",

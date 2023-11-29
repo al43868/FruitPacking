@@ -122,6 +122,31 @@ public class GamePlayManager : SerializedSingleTion<GamePlayManager>
     public void Init()
     {
         res = new();
+        res.partons = new();
+
+        int count = GameSaver.Instance.GetData().levelUPs[200] + 2;
+        int maxParIndex = 1 +GameSaver.Instance.GetData().levelUPs[201]*2;
+        for (int i = 0; i < count; i++)
+        {
+            int index = UnityEngine.Random.Range(0, maxParIndex);
+            res.partons.Add(new(GameManager.Instance.GetDataList().partons[0][index]));
+        }
+
+        res.partonIndex = -1;
+        res.smallEffCount = GameSaver.Instance.GetData().levelUPs[101] + 2;
+        res.bigEffCount = GameSaver.Instance.GetData().levelUPs[102] + 2;
+        res.randomEffCount = GameSaver.Instance.GetData().levelUPs[100]+2;
+        int itemCount = GameSaver.Instance.GetData().levelUPs[202] +
+            GameSaver.Instance.GetData().levelUPs[203] + 
+            GameSaver.Instance.GetData().levelUPs[204]+6;
+        Vector3 pos = new (-500,-300,0);
+        for (int i = 0; i < itemCount; i++)
+        {
+            int index = UnityEngine.Random.Range(0,GameManager.Instance.GetDataList().items.Count);
+            CreatNewItem(GameManager.Instance.GetDataList().items[index], pos);
+            pos.x += 70;
+        }
+
         isAnim = false;
     }
     public GamePlayRes GetRes()
@@ -157,6 +182,11 @@ public class GamePlayManager : SerializedSingleTion<GamePlayManager>
             }
 
             res.partonIndex++;
+            res.smallEffCount+= GameSaver.Instance.GetData().levelUPs[104];
+            res.bigEffCount += GameSaver.Instance.GetData().levelUPs[105];
+            res.randomEffCount += GameSaver.Instance.GetData().levelUPs[103];
+            panel.Reflash();
+
             //下一个盒子
             Box go = Instantiate(res.partons[res.partonIndex].model.box, boxs);
             
@@ -361,6 +391,7 @@ public class GamePlayManager : SerializedSingleTion<GamePlayManager>
     private void GetEffNewItem(ClickEff eff, ItemUI mouseItem)
     {
         if (eff == ClickEff.None) return;
+        AudioManager.Instance.PlayMusic(Music.GameEff1);
         ItemModel newItem = null;
         switch (eff)
         {

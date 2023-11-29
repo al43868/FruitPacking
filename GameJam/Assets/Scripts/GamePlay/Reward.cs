@@ -7,6 +7,9 @@ public abstract class Reward
     public abstract bool CanGet(Box box);
     public abstract string GetDes(Box box);
 }
+/// <summary>
+/// 品种大于
+/// </summary>
 public class Reward3001 : Reward
 {
     public int count;
@@ -35,6 +38,9 @@ public class Reward3001 : Reward
         return count.ToString();
     }
 }
+/// <summary>
+/// 品种等于
+/// </summary>
 public class Reward3002 : Reward
 {
     public int count;
@@ -63,7 +69,9 @@ public class Reward3002 : Reward
         return count.ToString();
     }
 }
-
+/// <summary>
+/// 品种小于
+/// </summary>
 public class Reward3003 : Reward
 {
     public int count;
@@ -91,7 +99,9 @@ public class Reward3003 : Reward
         return count.ToString();
     }
 }
-
+/// <summary>
+/// 箱子填满
+/// </summary>
 public class Reward3004 : Reward
 {
     public override bool CanGet(Box box)
@@ -110,15 +120,15 @@ public class Reward3004 : Reward
         return "";
     }
 }
-
+/// <summary>
+/// 箱子一半
+/// </summary>
 public class Reward3005 : Reward
 {
-    int all;
-    int have;
     public override bool CanGet(Box box)
     {
-        all = 0;
-        have = 0;
+       int  all = 0;
+       int have = 0;
         foreach (var item in box.grids)
         {
             all++;
@@ -139,5 +149,49 @@ public class Reward3005 : Reward
     public override string GetDes(Box box)
     {
         return "";
+    }
+}
+/// <summary>
+/// 不要tag
+/// </summary>
+public class Reward3006 : Reward
+{
+    public ItemType type;
+    public override bool CanGet(Box box)
+    {
+        foreach (var item in box.items)
+        {
+            if (!item.item.model.tags.Contains(type))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+    public override string GetDes(Box box)
+    {
+        return GameManager.Instance.GetNameByID((int)type);
+    }
+}
+/// <summary>
+/// 想要品种
+/// </summary>
+public class Reward3007 : Reward
+{
+    public int itemID;
+    public override bool CanGet(Box box)
+    {
+        foreach (var item in box.items)
+        {
+            if (item.item.model.bindID==itemID)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+    public override string GetDes(Box box)
+    {
+        return GameManager.Instance.GetNameByID(itemID);
     }
 }

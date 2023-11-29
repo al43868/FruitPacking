@@ -113,9 +113,10 @@ public class GameStateFSM : IFsm
             (x) =>
             {
                 GameRoot.Instance.Clear();
-                GamePlayManager.Instance.Init();
                 GameRoot.Instance.ShowGamePlayPanel();
+                GamePlayManager.Instance.Init();
                 InputManager.Instance.UseGamePlay();
+                AudioManager.Instance.PlayMusic(Music.BG2, true);
             },
             (x) =>
             {

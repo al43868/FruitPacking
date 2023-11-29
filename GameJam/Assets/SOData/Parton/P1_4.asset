@@ -24,4 +24,4 @@ MonoBehaviour:
   ID: 5004
   rewards:
   - {fileID: 11400000, guid: 5ba69227315a7c14f845ecdda7652ccd, type: 2}
-  box: {fileID: 8495164460822137255, guid: 45ab83dd33cd3e34c8db92fd8cebc0c7, type: 3}
+  box: {fileID: 7316310734746148988, guid: 699d00b3fb65887419786ea797bc98db, type: 3}

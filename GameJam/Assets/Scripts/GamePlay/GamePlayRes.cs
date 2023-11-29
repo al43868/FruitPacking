@@ -28,15 +28,6 @@ public class GamePlayRes
     public int bigEffCount;
     public GamePlayRes()
     {
-        partons = new ();
-        //todo need
-        for (int i = 0; i < 3; i++)
-        {
-            partons.Add(new(GameManager.Instance.GetDataList().partons[0][0]));
-        }
-        partonIndex = -1;
-        smallEffCount = 2;
-        bigEffCount = 2;
-        randomEffCount = 2;
+        
     }
 }
