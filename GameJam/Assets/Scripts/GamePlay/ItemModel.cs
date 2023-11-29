@@ -51,7 +51,7 @@ public class ItemModel : SerializedScriptableObject
 }
 public enum ItemType
 {
-    roundLow,
+    roundLow=6001,
     roundNormal,
     roundHigh,
     green,

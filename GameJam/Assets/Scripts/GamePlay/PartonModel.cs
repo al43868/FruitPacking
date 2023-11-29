@@ -12,6 +12,6 @@ public class PartonModel : SerializedScriptableObject
     public PartonModel()
     {
         ID = 5001;
-        rewards = new List<RewardModel>();
+        rewards = new ();
     }
 }

@@ -8,11 +8,7 @@ using UnityEngine;
 
 public class GamePlayManager : SerializedSingleTion<GamePlayManager>
 {
-    /// <summary>
-    /// 所有箱子
-    /// </summary>
-    public List<NewBox> boxes;
-
+ 
     //所有panel中的元素
     /// <summary>
     /// panel中的分层
@@ -83,7 +79,17 @@ public class GamePlayManager : SerializedSingleTion<GamePlayManager>
     /// <summary>
     /// 鼠标所在物品
     /// </summary>
-    public ItemUI mouseItem;
+    [SerializeField]
+    private ItemUI mouseItem;
+    public ItemUI MouseItem 
+    {
+        get { return mouseItem; }
+        set 
+        {
+            panel.SetItem(value);
+            mouseItem = value; 
+        }
+    }
     /// <summary>
     /// 当前点击效果
     /// </summary>
@@ -95,6 +101,7 @@ public class GamePlayManager : SerializedSingleTion<GamePlayManager>
     /// <summary>
     /// 玩法中的资源
     /// </summary>
+    [SerializeField]
     private GamePlayRes res;
     /// <summary>
     /// 主菜单
@@ -138,7 +145,7 @@ public class GamePlayManager : SerializedSingleTion<GamePlayManager>
             if (currentBox != null)
             {
                 currentBox.End();
-
+                panel.CloseParton();
                 int i = 0;
                 foreach (var item in currentBox.items)
                 {
@@ -161,7 +168,9 @@ public class GamePlayManager : SerializedSingleTion<GamePlayManager>
             
             panel.PlayBGAnim(0);
             panel.NextBox(false);
+            await panel.ShowParton(res.partons[res.partonIndex]);
             isAnim=false;
+
         }
     }
 
@@ -191,18 +200,32 @@ public class GamePlayManager : SerializedSingleTion<GamePlayManager>
 
     internal void SetMouseItem(ItemUI itemObj, bool v)
     {
-        if (mouseItem == null)
+        if (MouseItem == null)
         {
             if (v)
             {
-                mouseItem = itemObj;
+                MouseItem = itemObj;
             }
         }
         else
         {
-            if (mouseItem == itemObj)
+            if (v)
             {
-                mouseItem = null;
+                if (MouseItem == itemObj)
+                {
+                    return;
+                }
+                else
+                {
+                    MouseItem = itemObj;
+                }
+            }
+            else
+            {
+                if(MouseItem == itemObj)
+                {
+                    MouseItem = null;
+                }
             }
         }
     }
@@ -283,27 +306,27 @@ public class GamePlayManager : SerializedSingleTion<GamePlayManager>
         }
         else
         {
-            if (mouseItem != null)
+            if (MouseItem != null)
             {
                 if (currentBox != null)
                 {
-                    if (currentBox.items.Contains(mouseItem))
+                    if (currentBox.items.Contains(MouseItem))
                     {
-                        currentBox.RemoveItem(mouseItem, mouseGridPos);
-                        CurrentItem = mouseItem;
-                        mouseItem = null;
+                        currentBox.RemoveItem(MouseItem, mouseGridPos);
+                        CurrentItem = MouseItem;
+                        MouseItem = null;
                         return;
                     }
 
                 }
                 if (currentClickEff == ClickEff.None)
                 {
-                    CurrentItem = mouseItem;
-                    mouseItem = null;
+                    CurrentItem = MouseItem;
+                    MouseItem = null;
                 }
                 else
                 {
-                    GetEffNewItem(currentClickEff, mouseItem);
+                    GetEffNewItem(currentClickEff, MouseItem);
                 }
             }
             else

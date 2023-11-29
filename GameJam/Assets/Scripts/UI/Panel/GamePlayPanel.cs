@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using System;
 using System.Collections;
@@ -15,6 +16,10 @@ public class GamePlayPanel : BasePanel
     private List<MouseEffSet> effs;
     public Animator bgAnim, nextBoxAnim;
     public TMP_Text Eff1Count, Eff2Count, Eff3Count;
+    public Transform parton;
+    public TMP_Text partonText;
+    public Transform itemDes;
+    public TMP_Text itemDesText;
     public GamePlayPanel() : base(_type)
     {
 
@@ -36,15 +41,7 @@ public class GamePlayPanel : BasePanel
         {
             effs.Add(effsTr.GetChild(i).GetComponent<MouseEffSet>());
         }
-        //effs = new();
-        //effs.Add(UIHelper.GetComponentInChild<Toggle>(panelObj, "Eff1"));
-        //effs.Add(UIHelper.GetComponentInChild<Toggle>(panelObj, "Eff2"));
-        //effs.Add(UIHelper.GetComponentInChild<Toggle>(panelObj, "Eff3"));
-        //for (int i = 0; i < 3; i++) Effs
-        //{
-        //    int j = i;
-        //    effs[i].onValueChanged.AddListener((x) => { ChangeEff(x,j); });
-        //}
+       
         Eff1Count = UIHelper.GetComponentInChild<TMP_Text>(panelObj, "Eff1Text");
         Eff2Count = UIHelper.GetComponentInChild<TMP_Text>(panelObj, "Eff2Text");
         Eff3Count = UIHelper.GetComponentInChild<TMP_Text>(panelObj, "Eff3Text");
@@ -57,6 +54,14 @@ public class GamePlayPanel : BasePanel
         nextBoxAnim = UIHelper.GetComponentInChild<Animator>(panelObj, "NextBox");
         PlayBGAnim(0);
         GamePlayManager.Instance.CreatNewItem(GameManager.Instance.GetDataList().items[0], Vector3.zero);
+
+        parton = UIHelper.GetComponentInChild<Transform>(panelObj, "Parton");
+        partonText = parton.GetChild(0).GetComponent<TMP_Text>();
+        parton.localPosition = new Vector3(parton.localPosition.x, 850, 0);
+
+        itemDes = UIHelper.GetComponentInChild<Transform>(panelObj, "ItemDes");
+        itemDesText = itemDes.GetChild(0).GetComponent<TMP_Text>();
+        itemDes.gameObject.SetActive(false);
         Reflash();
     }
 
@@ -98,10 +103,10 @@ public class GamePlayPanel : BasePanel
     internal void GetCoin(int coin, int i)
     {
         int endCoin = coin + i;
-        DOTween.To(() => endCoin, (value) =>
+        DOTween.To(() => coin, (value) =>
         {
             coinText.text = value.ToString();
-        }, coin, 0.5f).SetEase(Ease.Linear);
+        }, endCoin, 0.5f).SetEase(Ease.Linear);
     }
 
     public void PlayBGAnim(int speed)
@@ -117,6 +122,42 @@ public class GamePlayPanel : BasePanel
         else
         {
             nextBoxAnim.Play("idle");
+        }
+    }
+    public void CloseParton()
+    {
+        partonText.text = "";
+        parton.DOLocalMoveY(850, 1f);
+    }
+    public async UniTask ShowParton(PartonObj par)
+    {
+        await parton.DOLocalMoveY(245, 1f);
+        string des = "";
+        foreach (var item in par.rewards)
+        {
+            des += GameManager.Instance.GetDescriptionByID(item.model.ID);
+            des += "<color=blue>"+item.model.reward.GetDes(GamePlayManager.Instance.currentBox)+ "</color>";
+            if (item.endLevel > 0)
+            {
+                des += "\r\n+<color=yellow>" + item.endLevel + "%</color>\r\n";
+            }
+            else
+            {
+                des += "\r\n-<color=red>" + item.endLevel + "%</color>\r\n";
+            }
+        }
+        partonText.text = des;
+    }
+    public void SetItem(ItemUI item)
+    {
+        if(item == null)
+        {
+            itemDes.gameObject.SetActive(false);
+        }
+        else
+        {
+            itemDes.gameObject.SetActive(true);
+            itemDesText.text = GameManager.Instance.GetNameByID(item.item.model.ID);
         }
     }
 }

@@ -293,44 +293,15 @@ MonoBehaviour:
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
-    ReferencedUnityObjects:
-    - {fileID: 8495164460822137255, guid: 45ab83dd33cd3e34c8db92fd8cebc0c7, type: 3}
+    ReferencedUnityObjects: []
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes:
-    - Name: boxes
-      Entry: 7
-      Data: 0|System.Collections.Generic.List`1[[NewBox, Assembly-CSharp]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 1
-    - Name: 
-      Entry: 7
-      Data: 1|NewBox, Assembly-CSharp
-    - Name: box
-      Entry: 10
-      Data: 0
-    - Name: rewards
+    - Name: panel
       Entry: 6
       Data: 
-    - Name: items
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: res
-      Entry: 6
-      Data: 
-  panel: {fileID: 0}
   boxs: {fileID: 0}
   items: {fileID: 0}
   mousePos: {fileID: 0}
@@ -341,8 +312,16 @@ MonoBehaviour:
   canInBox: 0
   mouseItem: {fileID: 0}
   currentClickEff: 0
-  mouseEff: 0
   itemPrefab: {fileID: 5291423220684846194, guid: c2dca1050bd8f8f47b779194291fdea8, type: 3}
+  res:
+    partons: []
+    partonIndex: -1
+    randomEffCount: 2
+    smallEffCount: 2
+    bigEffCount: 2
+  mouseEff: 0
+  nextBox: 0
+  isAnim: 0
 --- !u!4 &533764845
 Transform:
   m_ObjectHideFlags: 0

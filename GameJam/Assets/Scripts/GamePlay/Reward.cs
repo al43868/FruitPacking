@@ -86,9 +86,58 @@ public class Reward3003 : Reward
         }
         return false;
     }
-
     public override string GetDes(Box box)
     {
         return count.ToString();
+    }
+}
+
+public class Reward3004 : Reward
+{
+    public override bool CanGet(Box box)
+    {
+        foreach (var item in box.grids)
+        {
+            if (!item.Value.isSet)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+    public override string GetDes(Box box)
+    {
+        return "";
+    }
+}
+
+public class Reward3005 : Reward
+{
+    int all;
+    int have;
+    public override bool CanGet(Box box)
+    {
+        all = 0;
+        have = 0;
+        foreach (var item in box.grids)
+        {
+            all++;
+            if (item.Value.isSet)
+            {
+                have++;
+            }
+        }
+        if (have * 2 > all)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    public override string GetDes(Box box)
+    {
+        return "";
     }
 }

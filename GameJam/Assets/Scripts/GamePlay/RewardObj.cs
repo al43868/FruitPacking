@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[Serializable]
 public class RewardObj 
 {
     public RewardModel model;
@@ -9,6 +11,6 @@ public class RewardObj
     public RewardObj(RewardModel model)
     {
         this.model = model;
-        endLevel = model.levels[Random.Range(0, model.levels.Count)];
+        endLevel = model.levels[0];
     }
 }

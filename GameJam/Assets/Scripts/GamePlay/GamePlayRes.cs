@@ -1,11 +1,13 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[Serializable]
 public class GamePlayRes 
 {
     /// <summary>
-    /// 所有箱子
+    /// 所有客人
     /// </summary>
     public List<PartonObj> partons;
     /// <summary>

@@ -21,7 +21,7 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  ID: 5002
+  ID: 5003
   rewards:
   - {fileID: 11400000, guid: 99a036f6bd86a8345bb9ca8399dfd1be, type: 2}
   box: {fileID: 8495164460822137255, guid: 45ab83dd33cd3e34c8db92fd8cebc0c7, type: 3}
