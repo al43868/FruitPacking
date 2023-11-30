@@ -13,13 +13,14 @@ public class GamePlayPanel : BasePanel
     private static readonly string _path = "GamePlayPanel";
     private static readonly UIType _type = new(_name, _path);
     private TMP_Text boxCountText, coinText;
-    private List<MouseEffSet> effs;
+    private List<MouseEffSet> clickEffs;
     public Animator bgAnim, nextBoxAnim;
     public TMP_Text Eff1Count, Eff2Count, Eff3Count;
     public Transform parton;
     public TMP_Text partonText;
     public Transform itemDes;
     public TMP_Text itemDesText;
+    public Transform effsParent;
     public GamePlayPanel() : base(_type)
     {
 
@@ -36,10 +37,10 @@ public class GamePlayPanel : BasePanel
         coinText.text = GameSaver.Instance.GetData().coin.ToString();
 
         Transform effsTr = UIHelper.GetComponentInChild<Transform>(panelObj, "Effs");
-        effs = new();
+        clickEffs = new();
         for (int i = 0; i < 3; i++)
         {
-            effs.Add(effsTr.GetChild(i).GetComponent<MouseEffSet>());
+            clickEffs.Add(effsTr.GetChild(i).GetComponent<MouseEffSet>());
         }
        
         Eff1Count = UIHelper.GetComponentInChild<TMP_Text>(panelObj, "Eff1Text");
@@ -47,6 +48,7 @@ public class GamePlayPanel : BasePanel
         Eff3Count = UIHelper.GetComponentInChild<TMP_Text>(panelObj, "Eff3Text");
 
         GamePlayManager.Instance.panel = this;
+        EffManager.Instance.panel1 = this;
         Transform bgs = UIHelper.GetComponentInChild<Transform>(panelObj, "Bgs");
         //todo zhenzheng bg«–ªª
         int bgIndex = GameSaver.Instance.GetData().levelUPs[200];
@@ -61,6 +63,8 @@ public class GamePlayPanel : BasePanel
         itemDes = UIHelper.GetComponentInChild<Transform>(panelObj, "ItemDes");
         itemDesText = itemDes.GetChild(0).GetComponent<TMP_Text>();
         itemDes.gameObject.SetActive(false);
+
+        effsParent = UIHelper.GetComponentInChild<Transform>(panelObj, "EffsTr");
         Reflash();
     }
 
@@ -69,7 +73,7 @@ public class GamePlayPanel : BasePanel
         int count = GamePlayManager.Instance.GetRes().partons.Count - 1 - GamePlayManager.Instance.GetRes().partonIndex;
         boxCountText.text = count.ToString();
 
-        foreach (var item in effs)
+        foreach (var item in clickEffs)
         {
             if (item.clickEff == GamePlayManager.Instance.currentClickEff)
             {

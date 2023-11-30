@@ -34,6 +34,7 @@ Transform:
   - {fileID: 6961492479764616239}
   - {fileID: 6031845910778271968}
   - {fileID: 4040070555037326305}
+  - {fileID: 2078004823130105916}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -284,7 +285,35 @@ MonoBehaviour:
     - Name: audioPool
       Entry: 6
       Data: 
-  audioTypes: []
+  audioTypes:
+  - clip: {fileID: 8300000, guid: ebf57c77e54af4a4faad3ae5808a3370, type: 3}
+    group: {fileID: -359406993286359621, guid: 81bedd9b2a9e16b4291b0ce58b6d3418, type: 2}
+    music: 0
+    volume: 0.6
+    pitch: 1
+    loop: 0
+    ID: 9001
+  - clip: {fileID: 8300000, guid: ca38167932c7e544ba3caaa82843e352, type: 3}
+    group: {fileID: -359406993286359621, guid: 81bedd9b2a9e16b4291b0ce58b6d3418, type: 2}
+    music: 4
+    volume: 0.6
+    pitch: 1
+    loop: 0
+    ID: 9002
+  - clip: {fileID: 8300000, guid: 235d941fb7ef4634bbe79f5a70c19d72, type: 3}
+    group: {fileID: 3881286581909199620, guid: 81bedd9b2a9e16b4291b0ce58b6d3418, type: 2}
+    music: 1
+    volume: 1
+    pitch: 1
+    loop: 1
+    ID: 9003
+  - clip: {fileID: 8300000, guid: 630c28dbecfee1e4e9f3d2f9ef27d954, type: 3}
+    group: {fileID: 3881286581909199620, guid: 81bedd9b2a9e16b4291b0ce58b6d3418, type: 2}
+    music: 2
+    volume: 1
+    pitch: 1
+    loop: 1
+    ID: 9004
   bkAudio: {fileID: 0}
   bg: 0
   miuscMixer: {fileID: 24100000, guid: 81bedd9b2a9e16b4291b0ce58b6d3418, type: 2}
@@ -578,3 +607,34 @@ MonoBehaviour:
   m_DeselectOnBackgroundClick: 1
   m_PointerBehavior: 0
   m_CursorLockBehavior: 0
+--- !u!1 &9145330006106653569
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2078004823130105916}
+  m_Layer: 0
+  m_Name: Eff
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2078004823130105916
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9145330006106653569}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 127218724327542131}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

@@ -39,6 +39,7 @@ public class DataList : SerializedScriptableObject
             
             foreach (var i in items)
             {
+                if (item == i) { continue; }
                 int itemRound = i.roundID / 100;
                 if (round == 1)
                 {
@@ -91,9 +92,11 @@ public class DataList : SerializedScriptableObject
 
     private void TryIntoList(ItemModel item, ItemModel i, List<ItemModel> itemList)
     {
+        if (itemList.Contains(i)) return;
         if (item.bindID == i.bindID)
         {
             itemList.Add(i);
+            return;
         }
         foreach (var color in item.tags)
         {
@@ -102,6 +105,7 @@ public class DataList : SerializedScriptableObject
                 if (i.tags.Contains(color))
                 {
                     itemList.Add(i);
+                    return;
                 }
             }
         }

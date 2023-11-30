@@ -247,13 +247,28 @@ public class GameManager : SerializedSingleTion<GameManager>
             case ClickEff.None:
                 break;
             case ClickEff.Big:
+                EffManager.Instance.PlayEff(2, 0, mouseItem.transform.position);
+
+                if (mouseItem.item.model.bigItems.Count <= 0)
+                {
+                    Log(2008);
+                    return mouseItem.item.model;
+                }
                 int index1 = Random.Range(0, mouseItem.item.model.bigItems.Count);
                 return mouseItem.item.model.bigItems[index1];
-            case ClickEff.Small:
+            case ClickEff.Small:                
+                EffManager.Instance.PlayEff(1,0,mouseItem.transform.position);
+                if (mouseItem.item.model.smallItems.Count <= 0)
+                {
+                    Log(2008);
+                    return mouseItem.item.model;
+                }
                 int index = Random.Range(0, mouseItem.item.model.smallItems.Count);
                 return mouseItem.item.model.smallItems[index];
             case ClickEff.Random:
-                int index2=Random.Range(0, dataList.items.Count);
+                EffManager.Instance.PlayEff(0, 0, mouseItem.transform.position);
+
+                int index2 =Random.Range(0, dataList.items.Count);
                 return dataList.items[index2];
             default:
                 break;
