@@ -148,6 +148,7 @@ public class GamePlayManager : SerializedSingleTion<GamePlayManager>
         }
 
         isAnim = false;
+        panel.Reflash();
     }
     public GamePlayRes GetRes()
     {
@@ -159,6 +160,23 @@ public class GamePlayManager : SerializedSingleTion<GamePlayManager>
         if (isAnim) return;
         if((res.partons.Count - 1)<=res.partonIndex)
         {
+            panel.PlayBGAnim(1);
+            panel.NextBox(true);
+            isAnim = true;
+            //当前盒子
+            if (currentBox != null)
+            {
+                currentBox.End();
+                panel.CloseParton();
+                int i = 0;
+                foreach (var item in currentBox.items)
+                {
+                    i += item.item.GetValue();
+                }
+                GetCoin(i);
+                await currentBox.transform.DOLocalMove(new Vector3(-2000, 0, 0), 2f);
+            }
+            isAnim = false;
             EndDay();
         }
         else
@@ -176,8 +194,16 @@ public class GamePlayManager : SerializedSingleTion<GamePlayManager>
                 {
                     i += item.item.GetValue();
                 }
+                int endUp = 0;
+                foreach (var item in res.partons[res.partonIndex].rewards)
+                {
+                   if(item.model.reward.CanGet(currentBox))
+                    {
+                        endUp += item.endLevel;
+                    }
+                }
+                i = (int)(i * ((endUp+100) / 100f));
                 GetCoin(i);
-                //todo 真正获取金钱
                 _ = currentBox.transform.DOLocalMove(new Vector3(-2000, 0, 0), 2f);
             }
 
@@ -206,6 +232,8 @@ public class GamePlayManager : SerializedSingleTion<GamePlayManager>
 
     private void GetCoin(int i)
     {
+        if (i <= 0) return;
+        AudioManager.Instance.PlayMusic(Music.GameEff2);
         panel.GetCoin(GameSaver.Instance.GetData().coin, i);
         GameSaver.Instance.GetData().coin += i;
     }
@@ -325,7 +353,6 @@ public class GamePlayManager : SerializedSingleTion<GamePlayManager>
                 if (currentBox.SetItem(mouseGridPos, currentItem))
                 {
                     Vector3 v3 = currentBox.GetItemPos(mouseGridPos, currentItem);
-                    CurrentItem.transform.SetParent(currentBox.transform, false);
                     CurrentItem.transform.SetParent(currentBox.transform, false);
                     CurrentItem.transform.position = v3;
                     currentBox.items.Add(CurrentItem);

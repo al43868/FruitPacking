@@ -14,7 +14,6 @@ public class EffManager : SerializedSingleTion<EffManager>
             case 0:
                 if (panel1 != null)
                 {
-                    print(pos);
                     GameObject go = GameObject.Instantiate(effs[effIndex], panel1.effsParent);
                     go.transform.position = pos;
                     await UniTask.Delay(1000);

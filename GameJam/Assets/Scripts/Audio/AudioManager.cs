@@ -126,5 +126,6 @@ public enum Music
     BG1,
     BG2,
     BG3,
-    GameEff1
+    GameEff1,//µã»÷ÌØÐ§
+    GameEff2,//getcoin
 }

@@ -66,7 +66,7 @@ public class ItemUI : SerializedMonoBehaviour, IPointerEnterHandler, IPointerExi
                 this.transform.rotation =Quaternion.Euler(Vector3.zero);
                 break;
             case Dir.Down:
-                this.transform.rotation = Quaternion.Euler(new Vector3(0,0,-180));
+                this.transform.rotation = Quaternion.Euler(new Vector3(0,0,180));
                 break;
             case Dir.Left:
                 this.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 90));

@@ -22,6 +22,7 @@ public class ItemObj
     internal List<Vector2Int> GetRound(Vector2Int pos)
     {
         List<Vector2Int> result = TransformList(model.GetRound(), dir);
+       
         for (int i = 0; i < result.Count; i++)
         {
             result[i] = result[i] + pos;
@@ -39,15 +40,16 @@ public class ItemObj
             rows = Math.Max(rows, vector.y + 1);
             cols = Math.Max(cols, vector.x + 1);
         }
+        int round=Math.Max(rows, cols);
 
-        int[,] array = new int[rows, cols];
+        int[,] array = new int[round, round];
 
         foreach (var vector in originalList)
         {
             array[vector.y, vector.x] = 1;
         }
-        
-        int[,] rotatedArray = new int[rows, cols];
+
+        int[,] rotatedArray = new int[round, round];
         switch (dir)
         {
             case Dir.Up:
@@ -82,14 +84,13 @@ public class ItemObj
     public int[,] RotateArray(int[,] array, int angle)
     {
         int rows = array.GetLength(0);
-        int cols = array.GetLength(1);
-        int[,] rotatedArray = new int[cols, rows];
+        int[,] rotatedArray = new int[rows, rows];
 
         if (angle == 90)
         {
             for (int i = 0; i < rows; i++)
             {
-                for (int j = 0; j < cols; j++)
+                for (int j = 0; j < rows; j++)
                 {
                     rotatedArray[j, rows - 1 - i] = array[i, j];
                 }
@@ -99,9 +100,9 @@ public class ItemObj
         {
             for (int i = 0; i < rows; i++)
             {
-                for (int j = 0; j < cols; j++)
+                for (int j = 0; j < rows; j++)
                 {
-                    rotatedArray[cols - 1 - j, rows - 1 - i] = array[i, j];
+                    rotatedArray[rows - 1 - i, rows - 1 - j] = array[i, j];
                 }
             }
         }
@@ -109,15 +110,15 @@ public class ItemObj
         {
             for (int i = 0; i < rows; i++)
             {
-                for (int j = 0; j < cols; j++)
+                for (int j = 0; j < rows; j++)
                 {
-                    rotatedArray[cols - 1 - j, i] = array[i, j];
+                    rotatedArray[rows - 1 - j, i] = array[i, j];
                 }
             }
         }
         return rotatedArray;
     }
-        internal int GetValue()
+    internal int GetValue()
     {
         switch (itemLevel)
         {

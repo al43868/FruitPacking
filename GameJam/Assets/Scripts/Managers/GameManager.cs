@@ -248,7 +248,6 @@ public class GameManager : SerializedSingleTion<GameManager>
                 break;
             case ClickEff.Big:
                 EffManager.Instance.PlayEff(2, 0, mouseItem.transform.position);
-
                 if (mouseItem.item.model.bigItems.Count <= 0)
                 {
                     Log(2008);
@@ -267,7 +266,6 @@ public class GameManager : SerializedSingleTion<GameManager>
                 return mouseItem.item.model.smallItems[index];
             case ClickEff.Random:
                 EffManager.Instance.PlayEff(0, 0, mouseItem.transform.position);
-
                 int index2 =Random.Range(0, dataList.items.Count);
                 return dataList.items[index2];
             default:

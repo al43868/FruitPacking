@@ -329,9 +329,37 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7271192996779960888, guid: a89d9e077cdd01f4ab0b774cbbaf2530, type: 3}
     - target: {fileID: 9020013046241548919, guid: a89d9e077cdd01f4ab0b774cbbaf2530, type: 3}
+      propertyPath: audioTypes.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9020013046241548919, guid: a89d9e077cdd01f4ab0b774cbbaf2530, type: 3}
       propertyPath: serializationData.Prefab
       value: 
       objectReference: {fileID: 9020013046241548919, guid: a89d9e077cdd01f4ab0b774cbbaf2530, type: 3}
+    - target: {fileID: 9020013046241548919, guid: a89d9e077cdd01f4ab0b774cbbaf2530, type: 3}
+      propertyPath: audioTypes.Array.data[4].ID
+      value: 9005
+      objectReference: {fileID: 0}
+    - target: {fileID: 9020013046241548919, guid: a89d9e077cdd01f4ab0b774cbbaf2530, type: 3}
+      propertyPath: audioTypes.Array.data[4].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 7ef9a163d8cbbb5489135d77b5fcb764, type: 3}
+    - target: {fileID: 9020013046241548919, guid: a89d9e077cdd01f4ab0b774cbbaf2530, type: 3}
+      propertyPath: audioTypes.Array.data[4].group
+      value: 
+      objectReference: {fileID: -359406993286359621, guid: 81bedd9b2a9e16b4291b0ce58b6d3418, type: 2}
+    - target: {fileID: 9020013046241548919, guid: a89d9e077cdd01f4ab0b774cbbaf2530, type: 3}
+      propertyPath: audioTypes.Array.data[4].music
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9020013046241548919, guid: a89d9e077cdd01f4ab0b774cbbaf2530, type: 3}
+      propertyPath: audioTypes.Array.data[4].pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9020013046241548919, guid: a89d9e077cdd01f4ab0b774cbbaf2530, type: 3}
+      propertyPath: audioTypes.Array.data[4].volume
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

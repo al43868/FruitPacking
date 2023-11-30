@@ -89,19 +89,6 @@ public class GamePlayPanel : BasePanel
         Eff3Count.text = GamePlayManager.Instance.GetRes().bigEffCount.ToString();
     }
 
-    private void NextBox()
-    {
-        GamePlayManager.Instance.NextBox();
-        int count = GamePlayManager.Instance.GetRes().partons.Count - 1 - GamePlayManager.Instance.GetRes().partonIndex;
-        if (count > 0)
-        {
-            boxCountText.text = GameManager.Instance.GetDescriptionByID(4001) + count;
-        }
-        else
-        {
-            boxCountText.text = GameManager.Instance.GetDescriptionByID(4002);
-        }
-    }
 
     internal void GetCoin(int coin, int i)
     {
