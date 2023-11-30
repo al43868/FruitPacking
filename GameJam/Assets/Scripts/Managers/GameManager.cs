@@ -8,6 +8,8 @@ using UnityEngine;
 using UnityEngine.Localization.Settings;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.SceneManagement;
+using Random = UnityEngine.Random;
+
 public class GameManager : SerializedSingleTion<GameManager>
 {
     private GameStateFSM stateFSM;
@@ -238,8 +240,24 @@ public class GameManager : SerializedSingleTion<GameManager>
         print(Time.timeScale);
     }
 
-    internal ItemModel GetNewItem(ItemUI mouseItem, ClickEff big)
+    internal ItemModel GetNewItem(ItemUI mouseItem, ClickEff eff)
     {
+        switch (eff)
+        {
+            case ClickEff.None:
+                break;
+            case ClickEff.Big:
+                int index1 = Random.Range(0, mouseItem.item.model.bigItems.Count);
+                return mouseItem.item.model.bigItems[index1];
+            case ClickEff.Small:
+                int index = Random.Range(0, mouseItem.item.model.smallItems.Count);
+                return mouseItem.item.model.smallItems[index];
+            case ClickEff.Random:
+                int index2=Random.Range(0, dataList.items.Count);
+                return dataList.items[index2];
+            default:
+                break;
+        }
         return dataList.items[0];
     }
 }

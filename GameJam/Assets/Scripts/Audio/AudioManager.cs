@@ -15,7 +15,6 @@ public class AudioManager : SerializedSingleTion<AudioManager>
     {
         audioPool = new();
         audioPool.Init();
-        bg = Music.BG1;
         miuscMixer.SetFloat("EffVolume", GameSaver.Instance.GetSetting().effValue);
         miuscMixer.SetFloat("MusicVolume", GameSaver.Instance.GetSetting().musicValue);
         if (GameSaver.Instance.GetSetting().musicOpen)
@@ -34,6 +33,7 @@ public class AudioManager : SerializedSingleTion<AudioManager>
         {
             miuscMixer.SetFloat("EffVolume", -80);
         }
+        bg = Music.Button1;
         PlayMusic(Music.BG1, true);
     }
     /// <summary>
@@ -115,10 +115,10 @@ public class AudioManager : SerializedSingleTion<AudioManager>
         audioPool.Release(audio);
     }
 
-    internal void PlayBG()
-    {
-        PlayMusic(bg, true);
-    }
+    //internal void PlayBG()
+    //{
+    //    PlayMusic(bg, true);
+    //}
 }
 public enum Music
 {

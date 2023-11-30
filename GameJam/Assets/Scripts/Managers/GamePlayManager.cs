@@ -415,6 +415,15 @@ public class GamePlayManager : SerializedSingleTion<GamePlayManager>
                 res.smallEffCount--;
                 newItem = GameManager.Instance.GetNewItem(mouseItem, ClickEff.Small);
                 break;
+            case ClickEff.Random:
+                if (res.randomEffCount <= 0)
+                {
+                    GameManager.Instance.Log(2007);
+                    return;
+                }
+                res.randomEffCount--;
+                newItem = GameManager.Instance.GetNewItem(mouseItem, ClickEff.Random);
+                break;
             default:
                 break;
         }

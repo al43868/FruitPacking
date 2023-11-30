@@ -36,6 +36,14 @@ public class ItemModel : SerializedScriptableObject
     /// 所有tag
     /// </summary>
     public List<ItemType> tags;
+    /// <summary>
+    /// 缩小
+    /// </summary>
+    public List<ItemModel> smallItems;
+    /// <summary>
+    /// 放大
+    /// </summary>
+    public List<ItemModel> bigItems;
     public List<Vector2Int> GetRound()
     {
         return GameManager.Instance.GetDataList().rounds[roundID];

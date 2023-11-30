@@ -1,4 +1,5 @@
 using Sirenix.OdinInspector;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,7 +12,6 @@ public class DataList : SerializedScriptableObject
     public List<ItemModel> items;
     public List<List<PartonModel>> partons;
     public Dictionary<int, List<int>> levelUps;
-
     [Button]
     public void SetLevelUP()
     {
@@ -28,13 +28,81 @@ public class DataList : SerializedScriptableObject
         levelUps.Add(203, new List<int>(5) { 300, 600, 1200, 2000, 3000 }); 
         levelUps.Add(204, new List<int>(5) { 300, 600, 1200, 2000, 3000 });
     }
-    public void  Additems(List<ItemModel> newItems)
+    [Button]
+    public void SetItems()
     {
-        if (!items.Contains(newItems[0]))
+        foreach (var item in items)
         {
-            foreach (var item in newItems)
+            item.smallItems = new();
+            item.bigItems = new();
+            int round = item.roundID / 100;
+            
+            foreach (var i in items)
             {
-                items.Add(item);
+                int itemRound = i.roundID / 100;
+                if (round == 1)
+                {
+                    if (itemRound == 1)
+                    {
+                        TryIntoList(item, i, item.smallItems);
+                    }
+                    else if(itemRound == 2)
+                    {
+                        TryIntoList(item, i, item.bigItems);
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                } 
+                else if (round == 5)
+                {
+                    if (itemRound == 4)
+                    {
+                        TryIntoList(item, i, item.smallItems);
+                    }
+                    else if (itemRound == 5)
+                    {
+                        TryIntoList(item, i, item.bigItems);
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                }
+                else
+                {
+                    if (itemRound == (round-1))
+                    {
+                        TryIntoList(item, i, item.smallItems);
+                    }
+                    else if (itemRound == (round+1))
+                    {
+                        TryIntoList(item, i, item.bigItems);
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                }
+            }
+        }
+    }
+
+    private void TryIntoList(ItemModel item, ItemModel i, List<ItemModel> itemList)
+    {
+        if (item.bindID == i.bindID)
+        {
+            itemList.Add(i);
+        }
+        foreach (var color in item.tags)
+        {
+            if (color != ItemType.roundLow && color != ItemType.roundNormal && color != ItemType.roundHigh)
+            {
+                if (i.tags.Contains(color))
+                {
+                    itemList.Add(i);
+                }
             }
         }
     }

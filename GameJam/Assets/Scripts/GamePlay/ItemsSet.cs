@@ -5,7 +5,6 @@ using UnityEngine.EventSystems;
 
 public class ItemsSet : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
 {
-
     public void OnPointerEnter(PointerEventData eventData)
     {
         GamePlayManager.Instance.canSet = true;

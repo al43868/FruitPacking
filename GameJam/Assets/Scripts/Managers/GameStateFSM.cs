@@ -102,7 +102,7 @@ public class GameStateFSM : IFsm
             {
                 GameRoot.Instance.Clear();
                 GameRoot.Instance.ShowDevelopMainPanel();
-                AudioManager.Instance.PlayBG();
+                AudioManager.Instance.PlayMusic(Music.BG1);
             },
         (x) =>
             {
