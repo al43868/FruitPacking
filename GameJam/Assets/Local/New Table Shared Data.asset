@@ -75,10 +75,6 @@ MonoBehaviour:
     m_Key: NextDay
     m_Metadata:
       m_Items: []
-  - m_Id: 1152329525698560
-    m_Key: StartCountDes
-    m_Metadata:
-      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

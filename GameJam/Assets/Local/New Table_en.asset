@@ -17,7 +17,67 @@ MonoBehaviour:
   m_SharedData: {fileID: 11400000, guid: b332b188ab1e81f428bea5e8d0b65511, type: 2}
   m_Metadata:
     m_Items: []
-  m_TableData: []
+  m_TableData:
+  - m_Id: 39621128560640
+    m_Localized: Fruit basket
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39898363666432
+    m_Localized: Games start
+    m_Metadata:
+      m_Items: []
+  - m_Id: 413725367148544
+    m_Localized: money
+    m_Metadata:
+      m_Items: []
+  - m_Id: 425906926198784
+    m_Localized: Basic enhancement
+    m_Metadata:
+      m_Items: []
+  - m_Id: 428671706537984
+    m_Localized: Science and technology
+    m_Metadata:
+      m_Items: []
+  - m_Id: 448715169669120
+    m_Localized: Amplify
+    m_Metadata:
+      m_Items: []
+  - m_Id: 448845453139968
+    m_Localized: Shrink rays
+    m_Metadata:
+      m_Items: []
+  - m_Id: 448961048158208
+    m_Localized: Random ray
+    m_Metadata:
+      m_Items: []
+  - m_Id: 458229688246272
+    m_Localized: Initial quantity
+    m_Metadata:
+      m_Items: []
+  - m_Id: 458340275265536
+    m_Localized: Energy reply
+    m_Metadata:
+      m_Items: []
+  - m_Id: 458473863847936
+    m_Localized: High -quality probability
+    m_Metadata:
+      m_Items: []
+  - m_Id: 791119412273152
+    m_Localized: Base level
+    m_Metadata:
+      m_Items: []
+  - m_Id: 791647600975872
+    m_Localized: Number of initial fruits
+    m_Metadata:
+      m_Items: []
+  - m_Id: 791915063353344
+    m_Localized: Customer level
+    m_Metadata:
+      m_Items: []
+  - m_Id: 796050353496064
+    m_Localized: the next day
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

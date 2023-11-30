@@ -220,20 +220,20 @@ public class GameManager : SerializedSingleTion<GameManager>
         LoadScene(2);
     }
 
-    // public int i;
-    // /// <summary>
-    // /// UnityEngine自带截屏Api，只能截全屏
-    // /// </summary>
-    // /// <param name="fileName">文件名</param>
+    //public int i;
+    ///// <summary>
+    ///// UnityEngine自带截屏Api，只能截全屏
+    ///// </summary>
+    ///// <param name="fileName">文件名</param>
     //[Button]
-    // public void ScreenShotFile()
-    // {
-    //     string file = string.Format("Assets/Description/{0}.png",i);
-    //     i++;
-    //     UnityEngine.ScreenCapture.CaptureScreenshot(file);//截图并保存截图文件
-    //     Debug.Log(string.Format("截取了一张图片: {0}", file));
-    //     UnityEditor.AssetDatabase.Refresh();
-    // }
+    //public void ScreenShotFile()
+    //{
+    //    string file = string.Format("Assets/Description/{0}.png", i);
+    //    i++;
+    //    UnityEngine.ScreenCapture.CaptureScreenshot(file);//截图并保存截图文件
+    //    Debug.Log(string.Format("截取了一张图片: {0}", file));
+    //    UnityEditor.AssetDatabase.Refresh();
+    //}
     [Button]
     public void DebugTime()
     {

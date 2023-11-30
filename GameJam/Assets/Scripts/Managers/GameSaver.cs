@@ -39,47 +39,47 @@ public class GameSaver : SerializedSingleTion<GameSaver>
     {
         base.Awake();
         //Load(); todo
-       await InitLocalization();
-        GameRoot.Instance.PopOnePanel();
+        await InitLocalization();
     }
-//    /// <summary>
-//    /// 读取本地存档
-//    /// </summary>
-//    private async void Load()
-//    {
-//        string savePath = "";
-//        string saveSettingPath = "";
-//#if UNITY_EDITOR
-//        savePath = Application.persistentDataPath + "/SaveEditor.json";
-//        saveSettingPath = Application.persistentDataPath + "/SaveSettingEditor.json";
-//#endif
-//#if UNITY_STANDALONE_WIN&& !UNITY_EDITOR
-//        savePath = Application.persistentDataPath + "/Save.json";
-//        saveSettingPath = Application.persistentDataPath + "/SaveSetting.json";
-//#endif
-//        if (File.Exists(savePath))
-//        {
-//            string str = File.ReadAllText(savePath);
-//            print("LoadSave: " + savePath);
-//            save = JsonUtility.FromJson<SaveData>(str);
-//        }
-//        else
-//        {
-//            save = new();
-//        }
-//        if (File.Exists(saveSettingPath))
-//        {
-//            string str = File.ReadAllText(saveSettingPath);
-//            print("LoadSaveSetting: " + saveSettingPath);
-//            setting = JsonUtility.FromJson<GameSetting>(str);
-//        }
-//        else
-//        {
-//            setting = new GameSetting();
-//        }
-//        await InitLocalization();
-//        SetSaveSetting();
-//    }
+   
+    //    /// <summary>
+    //    /// 读取本地存档
+    //    /// </summary>
+    //    private async void Load()
+    //    {
+    //        string savePath = "";
+    //        string saveSettingPath = "";
+    //#if UNITY_EDITOR
+    //        savePath = Application.persistentDataPath + "/SaveEditor.json";
+    //        saveSettingPath = Application.persistentDataPath + "/SaveSettingEditor.json";
+    //#endif
+    //#if UNITY_STANDALONE_WIN&& !UNITY_EDITOR
+    //        savePath = Application.persistentDataPath + "/Save.json";
+    //        saveSettingPath = Application.persistentDataPath + "/SaveSetting.json";
+    //#endif
+    //        if (File.Exists(savePath))
+    //        {
+    //            string str = File.ReadAllText(savePath);
+    //            print("LoadSave: " + savePath);
+    //            save = JsonUtility.FromJson<SaveData>(str);
+    //        }
+    //        else
+    //        {
+    //            save = new();
+    //        }
+    //        if (File.Exists(saveSettingPath))
+    //        {
+    //            string str = File.ReadAllText(saveSettingPath);
+    //            print("LoadSaveSetting: " + saveSettingPath);
+    //            setting = JsonUtility.FromJson<GameSetting>(str);
+    //        }
+    //        else
+    //        {
+    //            setting = new GameSetting();
+    //        }
+    //        await InitLocalization();
+    //        SetSaveSetting();
+    //    }
 
     internal GameSetting GetSetting()
     {

@@ -17,7 +17,67 @@ MonoBehaviour:
   m_SharedData: {fileID: 11400000, guid: b332b188ab1e81f428bea5e8d0b65511, type: 2}
   m_Metadata:
     m_Items: []
-  m_TableData: []
+  m_TableData:
+  - m_Id: 39621128560640
+    m_Localized: Canasta de frutas
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39898363666432
+    m_Localized: Los juegos comienzan
+    m_Metadata:
+      m_Items: []
+  - m_Id: 413725367148544
+    m_Localized: dinero
+    m_Metadata:
+      m_Items: []
+  - m_Id: 425906926198784
+    m_Localized: "Mejora b\xE1sica"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 428671706537984
+    m_Localized: "Ciencia y Tecnolog\xEDa"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 448715169669120
+    m_Localized: Amplificar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 448845453139968
+    m_Localized: Rayos encogidos
+    m_Metadata:
+      m_Items: []
+  - m_Id: 448961048158208
+    m_Localized: Rayo aleatorio
+    m_Metadata:
+      m_Items: []
+  - m_Id: 458229688246272
+    m_Localized: Cantidad inicial
+    m_Metadata:
+      m_Items: []
+  - m_Id: 458340275265536
+    m_Localized: "Respuesta de energ\xEDa"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 458473863847936
+    m_Localized: Probabilidad de alta calidad
+    m_Metadata:
+      m_Items: []
+  - m_Id: 791119412273152
+    m_Localized: "Nivel b\xE1sico"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 791647600975872
+    m_Localized: "N\xFAmero de frutas iniciales"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 791915063353344
+    m_Localized: Nivel de cliente
+    m_Metadata:
+      m_Items: []
+  - m_Id: 796050353496064
+    m_Localized: "el d\xEDa siguiente"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
