@@ -5,7 +5,7 @@ using Sirenix.OdinInspector;
 using System;
 
 [CreateAssetMenu(fileName = "ItemModel", menuName = "SO/ItemModel")]
-[Serializable]
+//[Serializable]
 public class ItemModel : SerializedScriptableObject
 {
     /// <summary>

@@ -5,6 +5,7 @@ using UnityEngine;
 using Sirenix.OdinInspector;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using Coffee.UIEffects;
 
 public class ItemUI : SerializedMonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
@@ -12,25 +13,47 @@ public class ItemUI : SerializedMonoBehaviour, IPointerEnterHandler, IPointerExi
     public Material outLine;
     public Image image;
     public Vector2Int boxPos;
+    public UIShiny shiny;
     public void OnPointerEnter(PointerEventData eventData)
     {
+        if (shiny != null)
+        {
+            shiny.enabled = false;
+        }
         image.material = outLine;
         GamePlayManager.Instance.SetMouseItem(this, true);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
+        if (shiny != null)
+        {
+            shiny.enabled = true;
+        }
         image.material = null;
         GamePlayManager.Instance.SetMouseItem(this, false);
     }
 
-    internal void Init(ItemObj p,ItemLevel level=ItemLevel.None)
+    internal void Init(ItemObj p)
     {
         item = p;
         this.GetComponent<RectTransform>().sizeDelta=new(p.model.GetHigh() * 100,p.model.GetHigh() * 100);
         int spriteIndex= UnityEngine.Random.Range(0,p.model.sprites.Count);
         image.sprite=p.model.sprites[spriteIndex];
         image.alphaHitTestMinimumThreshold = 0.5f;
+        switch (p.itemLevel)
+        {
+            case ItemLevel.None:
+                break;
+            case ItemLevel.Nice:
+                shiny = this.gameObject.AddComponent<UIShiny>();
+                image = GetComponent<Image>();
+                shiny.effectPlayer.loop = true;
+                shiny.Play(true);
+                break;
+            default:
+                break;
+        }
     }
 
     internal void SetParent(Transform mousePos)

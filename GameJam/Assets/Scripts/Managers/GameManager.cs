@@ -72,13 +72,11 @@ public class GameManager : SerializedSingleTion<GameManager>
 
         if (sceneIndex == 0)
         {
-            //todo need
             SceneManager.LoadScene(0);
             if (InputManager.Instance != null)
             {
                 InputManager.Instance.gamePlay.Disable();
             }
-            //pauseing = false;
             ChangeState(-1);
             AudioManager.Instance.PlayMusic(Music.BG3, true);
         }

@@ -13,11 +13,11 @@ public class ItemObj
     public ItemModel model;
     public ItemLevel itemLevel;
    
-    public ItemObj(ItemModel itemModel)
+    public ItemObj(ItemModel itemModel,ItemLevel level)
     {
         dir = Dir.Up;
         this.model = itemModel;
-        itemLevel = ItemLevel.None;//todo need 物品等级
+        itemLevel = level;//todo need 物品等级 补充
     }
     internal List<Vector2Int> GetRound(Vector2Int pos)
     {
@@ -140,4 +140,5 @@ public enum Dir
 public enum ItemLevel
 {
     None,
+    Nice,
 }

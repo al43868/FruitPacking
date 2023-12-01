@@ -5,6 +5,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class GamePlayManager : SerializedSingleTion<GamePlayManager>
 {
@@ -142,8 +143,12 @@ public class GamePlayManager : SerializedSingleTion<GamePlayManager>
         Vector3 pos = new (-500,-300,0);
         for (int i = 0; i < itemCount; i++)
         {
+            int levelIndex = UnityEngine.Random.Range(0, 100);
+            ItemLevel level = ItemLevel.None;
+            if (levelIndex >= 80) level = ItemLevel.Nice;
+
             int index = UnityEngine.Random.Range(0,GameManager.Instance.GetDataList().items.Count);
-            CreatNewItem(GameManager.Instance.GetDataList().items[index], pos);
+            CreatNewItem(GameManager.Instance.GetDataList().items[index], pos,level);
             pos.x += 70;
         }
 
@@ -224,12 +229,16 @@ public class GamePlayManager : SerializedSingleTion<GamePlayManager>
             
             panel.PlayBGAnim(0);
             panel.NextBox(false);
-            await panel.ShowParton(res.partons[res.partonIndex]);
+            await panel.ShowParton();
             isAnim=false;
 
         }
     }
-
+    public PartonObj GetParton()
+    {
+        if (res.partonIndex < 0) return null;
+        return res.partons[res.partonIndex];
+    }
     private void GetCoin(int i)
     {
         if (i <= 0) return;
@@ -358,6 +367,7 @@ public class GamePlayManager : SerializedSingleTion<GamePlayManager>
                     currentBox.items.Add(CurrentItem);
                     CurrentItem = null;
                     canSet = false;
+                    panel.ReflashRewards();
                 }
             }
         }
@@ -372,6 +382,7 @@ public class GamePlayManager : SerializedSingleTion<GamePlayManager>
                         currentBox.RemoveItem(MouseItem);
                         CurrentItem = MouseItem;
                         MouseItem = null;
+                        panel.ReflashRewards();
                         return;
                     }
 
@@ -420,6 +431,8 @@ public class GamePlayManager : SerializedSingleTion<GamePlayManager>
         if (eff == ClickEff.None) return;
         AudioManager.Instance.PlayMusic(Music.GameEff1);
         ItemModel newItem = null;
+        ItemLevel level = ItemLevel.None;
+        //todo zhegnshi 物品等级随机
         switch (eff)
         {
             case ClickEff.None:
@@ -432,6 +445,8 @@ public class GamePlayManager : SerializedSingleTion<GamePlayManager>
                 }
                 res.bigEffCount--;
                 newItem = GameManager.Instance.GetNewItem(mouseItem,ClickEff.Big);
+                int i=Random.Range(0,5);
+                if (i <= GameSaver.Instance.GetData().levelUPs[108]) level = ItemLevel.Nice;
                 break;
             case ClickEff.Small:
                 if (res.smallEffCount <= 0)
@@ -441,6 +456,8 @@ public class GamePlayManager : SerializedSingleTion<GamePlayManager>
                 }
                 res.smallEffCount--;
                 newItem = GameManager.Instance.GetNewItem(mouseItem, ClickEff.Small);
+                int i2 = Random.Range(0, 5);
+                if (i2 <= GameSaver.Instance.GetData().levelUPs[107]) level = ItemLevel.Nice;
                 break;
             case ClickEff.Random:
                 if (res.randomEffCount <= 0)
@@ -449,21 +466,22 @@ public class GamePlayManager : SerializedSingleTion<GamePlayManager>
                     return;
                 }
                 res.randomEffCount--;
+                int i1 = Random.Range(0, 5);
+                if (i1 <= GameSaver.Instance.GetData().levelUPs[106]) level = ItemLevel.Nice;
                 newItem = GameManager.Instance.GetNewItem(mouseItem, ClickEff.Random);
                 break;
             default:
                 break;
         }
-        //todo pinzhi
         Vector3 pos = mouseItem.transform.localPosition;
-        CreatNewItem(newItem, pos);
+        CreatNewItem(newItem, pos,level);
         GameObject.Destroy(mouseItem.gameObject);
     }
-    public void CreatNewItem(ItemModel item, Vector3 pos)
+    public void CreatNewItem(ItemModel item, Vector3 pos,ItemLevel itemLevel)
     {
         var go = GameObject.Instantiate(itemPrefab, items);
         go.transform.localPosition = pos;
-        go.Init(new(item));
+        go.Init(new(item,itemLevel));
     }
 }
 public enum ClickEff

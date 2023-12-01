@@ -87,6 +87,7 @@ public class GamePlayPanel : BasePanel
         Eff1Count.text = GamePlayManager.Instance.GetRes().randomEffCount.ToString();
         Eff2Count.text = GamePlayManager.Instance.GetRes().smallEffCount.ToString();
         Eff3Count.text = GamePlayManager.Instance.GetRes().bigEffCount.ToString();
+
     }
 
 
@@ -119,21 +120,42 @@ public class GamePlayPanel : BasePanel
         partonText.text = "";
         parton.DOLocalMoveY(850, 1f);
     }
-    public async UniTask ShowParton(PartonObj par)
+    public async UniTask ShowParton()
     {
         await parton.DOLocalMoveY(245, 1f);
+        ReflashRewards();
+    }
+    public void ReflashRewards()
+    {
         string des = "";
-        foreach (var item in par.rewards)
+        PartonObj parton = GamePlayManager.Instance.GetParton();
+        if (parton == null)
         {
-            des += GameManager.Instance.GetDescriptionByID(item.model.ID);
-            des += "<color=blue>"+item.model.reward.GetDes(GamePlayManager.Instance.currentBox)+ "</color>";
-            if (item.endLevel > 0)
+            des = "";
+        }
+        else
+        {
+            foreach (var item in parton.rewards)
             {
-                des += "\r\n+<color=yellow>" + item.endLevel + "%</color>\r\n";
-            }
-            else
-            {
-                des += "\r\n-<color=red>" + item.endLevel + "%</color>\r\n";
+                //des += GameManager.Instance.GetDescriptionByID(item.model.ID);
+                if (item.model.reward.CanGet(GamePlayManager.Instance.currentBox))
+                {
+                    des += "<color=green>" + GameManager.Instance.GetDescriptionByID(item.model.ID) + "</color>";
+                }
+                else
+                {
+                    des += GameManager.Instance.GetDescriptionByID(item.model.ID);
+                }
+                des += "<color=blue>" + item.model.reward.GetDes(GamePlayManager.Instance.currentBox) + "</color>";
+                if (item.endLevel > 0)
+                {
+                    des += "\r\n+<color=yellow>" + item.endLevel + "%</color>\r\n";
+                }
+                else
+                {
+                    des += "\r\n-<color=red>" + item.endLevel + "%</color>\r\n";
+                }
+                des += "\r\n";
             }
         }
         partonText.text = des;

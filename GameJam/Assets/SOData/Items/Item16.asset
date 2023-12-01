@@ -28,3 +28,11 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 472ed33fb03353b4895bf4ee367405dc, type: 3}
   tags: 7317000074170000
+  smallItems: []
+  bigItems:
+  - {fileID: 11400000, guid: 5c6ace8516fe6c8428b033d2365c919b, type: 2}
+  - {fileID: 11400000, guid: 3e9b6ac64db96254e88b8a164bae4252, type: 2}
+  - {fileID: 11400000, guid: f2b54520709233c4c87036f52bfe905f, type: 2}
+  - {fileID: 11400000, guid: 20ce15425e06f9a4d815cbe52bd42a9a, type: 2}
+  - {fileID: 11400000, guid: 99bc9ecb37aae3c4e8681803eb29964e, type: 2}
+  - {fileID: 11400000, guid: 96d913f2d6ffc1e499372b2e43c78514, type: 2}

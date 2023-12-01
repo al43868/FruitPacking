@@ -28,3 +28,8 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 492b701eaf9c51a4ea0cd06c458a5128, type: 3}
   tags: 7117000075170000
+  smallItems:
+  - {fileID: 11400000, guid: 36e767e189501b7418384863dfa9f521, type: 2}
+  bigItems:
+  - {fileID: 11400000, guid: 48f7d8b16ac683b46a89a5b4911e4da8, type: 2}
+  - {fileID: 11400000, guid: 52f754a66670c504e992976f046fed42, type: 2}

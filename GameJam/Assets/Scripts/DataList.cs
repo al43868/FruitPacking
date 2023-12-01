@@ -2,6 +2,7 @@ using Sirenix.OdinInspector;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "DataList", menuName = "SO/DataList")]
@@ -18,15 +19,15 @@ public class DataList : SerializedScriptableObject
         levelUps = new Dictionary<int, List<int>>();
         for (int i = 0; i < 3; i++)
         {
-            levelUps.Add(100 + i * 3 + 0, new List<int>(5) { 300, 600, 1200, 2000, 3000 });
-            levelUps.Add(100 + i * 3 + 1, new List<int>(5) { 300, 600, 1200, 2000, 3000 });
-            levelUps.Add(100 + i * 3 + 2, new List<int>(5) { 300, 600, 1200, 2000, 3000 });
+            levelUps.Add(100 + i * 3 + 0, new List<int>(5) { 200, 400, 600, 800, 1000 });
+            levelUps.Add(100 + i * 3 + 1, new List<int>(5) { 200, 400, 600, 800, 1000 });
+            levelUps.Add(100 + i * 3 + 2, new List<int>(5) { 200, 400, 600, 800, 1000 });
         }
-        levelUps.Add(200, new List<int>(5) { 300, 600, 1200, 2000, 3000 });
-        levelUps.Add(201, new List<int>(5) { 300, 600, 1200, 2000, 3000 });
-        levelUps.Add(202, new List<int>(5) { 300, 600, 1200, 2000, 3000 });
-        levelUps.Add(203, new List<int>(5) { 300, 600, 1200, 2000, 3000 }); 
-        levelUps.Add(204, new List<int>(5) { 300, 600, 1200, 2000, 3000 });
+        levelUps.Add(200, new List<int>(5) { 200, 400, 600, 800, 1000 });
+        levelUps.Add(201, new List<int>(5) { 200, 400, 600, 800, 1000 });
+        levelUps.Add(202, new List<int>(5) { 200, 400, 600, 800, 1000 });
+        levelUps.Add(203, new List<int>(5) { 200, 400, 600, 800, 1000 }); 
+        levelUps.Add(204, new List<int>(5) { 200, 400, 600, 800, 1000 });
     }
     [Button]
     public void SetItems()
@@ -88,6 +89,7 @@ public class DataList : SerializedScriptableObject
                 }
             }
         }
+        AssetDatabase.SaveAssets();
     }
 
     private void TryIntoList(ItemModel item, ItemModel i, List<ItemModel> itemList)
@@ -96,7 +98,7 @@ public class DataList : SerializedScriptableObject
         if (item.bindID == i.bindID)
         {
             itemList.Add(i);
-            return;
+            EditorUtility.SetDirty(item);
         }
         foreach (var color in item.tags)
         {
@@ -104,6 +106,7 @@ public class DataList : SerializedScriptableObject
             {
                 if (i.tags.Contains(color))
                 {
+                    EditorUtility.SetDirty(item);
                     itemList.Add(i);
                     return;
                 }

@@ -113,7 +113,6 @@ public class DevelopMainPanel : BasePanel
 
     private void ChangePanel(int v)
     {
-        //todo need
         panels[panelIndex].gameObject.SetActive(false);
         int allPanelCount = 1;
         if (panelIndex + v > allPanelCount)
@@ -141,24 +140,35 @@ public class DevelopMainPanel : BasePanel
                 for (int i = 0; i < baseLevels.Count; i++)
                 {
                     int index = 200 + i;
-                    baseLevels[i].text = GameSaver.Instance.GetData().levelUPs[index].ToString();
-                    baseValues[i].text = GameManager.Instance.GetDataList().
-                       levelUps[index][GameSaver.Instance.GetData().levelUPs[index]].ToString();
+                    SetLevelDes(index, baseLevels[i], baseValues[i]);
                 }
                 break;
             case 1:
                 for (int i = 0; i < clickLevels.Count; i++)
                 {
                     int index = 100 + i;
-                    clickLevels[i].text = GameSaver.Instance.GetData().levelUPs[index].ToString();
-                    clickValues[i].text = GameManager.Instance.GetDataList().
-                       levelUps[index][GameSaver.Instance.GetData().levelUPs[index]].ToString();
+                    SetLevelDes(index, clickLevels[i], clickValues[i]);
                 }
                 break;
             default:
                 break;
         }
     }
+
+    private void SetLevelDes(int index, TMP_Text tMP_Text1, TMP_Text tMP_Text2)
+    {
+        tMP_Text1.text = GameSaver.Instance.GetData().levelUPs[index].ToString();
+        if (GameSaver.Instance.GetData().levelUPs[index] >= 5)
+        {
+            tMP_Text2.text = GameManager.Instance.GetNameByID(2006);
+        }
+        else
+        {
+            tMP_Text2.text = GameManager.Instance.GetDataList().
+               levelUps[index][GameSaver.Instance.GetData().levelUPs[index]].ToString();
+        }
+    }
+
     private void Play()
     {
         GameManager.Instance.LoadScene(1);
