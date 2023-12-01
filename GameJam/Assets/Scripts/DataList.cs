@@ -29,6 +29,7 @@ public class DataList : SerializedScriptableObject
         levelUps.Add(203, new List<int>(5) { 200, 400, 600, 800, 1000 }); 
         levelUps.Add(204, new List<int>(5) { 200, 400, 600, 800, 1000 });
     }
+# if UNITY_EDITOR
     [Button]
     public void SetItems()
     {
@@ -113,4 +114,5 @@ public class DataList : SerializedScriptableObject
             }
         }
     }
+#endif
 }

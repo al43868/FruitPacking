@@ -78,6 +78,10 @@ MonoBehaviour:
     m_Localized: "el d\xEDa siguiente"
     m_Metadata:
       m_Items: []
+  - m_Id: 2662228638244864
+    m_Localized: "Rotaci\xF3n clave R"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

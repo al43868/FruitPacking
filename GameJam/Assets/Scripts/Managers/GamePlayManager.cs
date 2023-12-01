@@ -231,8 +231,8 @@ public class GamePlayManager : SerializedSingleTion<GamePlayManager>
             panel.NextBox(false);
             await panel.ShowParton();
             isAnim=false;
-
         }
+        panel.Reflash();
     }
     public PartonObj GetParton()
     {

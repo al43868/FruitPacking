@@ -75,6 +75,10 @@ MonoBehaviour:
     m_Key: NextDay
     m_Metadata:
       m_Items: []
+  - m_Id: 2662228638244864
+    m_Key: RotateDes
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

@@ -21,6 +21,7 @@ public class GamePlayPanel : BasePanel
     public Transform itemDes;
     public TMP_Text itemDesText;
     public Transform effsParent;
+    public TMP_Text getCoin;
     public GamePlayPanel() : base(_type)
     {
 
@@ -65,6 +66,7 @@ public class GamePlayPanel : BasePanel
         itemDes.gameObject.SetActive(false);
 
         effsParent = UIHelper.GetComponentInChild<Transform>(panelObj, "EffsTr");
+        getCoin= UIHelper.GetComponentInChild<TMP_Text>(panelObj, "GetCoin");
         Reflash();
     }
 
@@ -93,6 +95,9 @@ public class GamePlayPanel : BasePanel
 
     internal void GetCoin(int coin, int i)
     {
+        getCoin.transform.localPosition = new Vector3(840, -420);
+        getCoin.text="+"+i.ToString();
+        getCoin.transform.DOLocalMoveY(-390, 1f).OnComplete(()=> { getCoin.text = ""; });
         int endCoin = coin + i;
         DOTween.To(() => coin, (value) =>
         {
@@ -172,6 +177,7 @@ public class GamePlayPanel : BasePanel
             string str = "";
             str+= GameManager.Instance.GetNameByID(item.item.model.ID);
             str+= "\r\n<color=yellow>" + item.item.model.value + "</color>\r\n";
+            str += GameManager.Instance.GetNameByID((int)item.item.itemLevel) + "\r\n";
             foreach (var tag in item.item.model.tags)
             {
                str+= GameManager.Instance.GetNameByID((int)tag)+" ";

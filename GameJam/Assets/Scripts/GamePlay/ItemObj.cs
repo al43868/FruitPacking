@@ -139,6 +139,6 @@ public enum Dir
 }
 public enum ItemLevel
 {
-    None,
+    None=4001,
     Nice,
 }
