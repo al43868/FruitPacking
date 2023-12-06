@@ -9,8 +9,11 @@ public class GameStart : MonoBehaviour
     async void Start()
     {
         GameRoot.Instance.ShowGameStartPanel();
+        Debug.Log(1);
         GameRoot.Instance.ShowCutScenePanel();
         await UniTask.Delay(1000);
         GameRoot.Instance.PopOnePanel();
+        Debug.Log(2);
+
     }
 }
